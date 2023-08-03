@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://55kwukai.github.io/sitemap.xml
