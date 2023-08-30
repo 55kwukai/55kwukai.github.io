@@ -13,6 +13,19 @@
     <language>en</language><atom:link href="https://55kwukai.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://55kwukai.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/about/</guid>
+      <description>👋About Me Name: Kai Wu
+Gender: 👨‍💻Man
+Location: 🏞️China,HangZhou
+Occupation: 🧑🏼‍🎓Postgraduate
+Hobby: Fitness , Karaoke , Do some interesting , Coding</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://55kwukai.github.io/posts/%E6%88%91%E5%92%8C%E6%88%91%E7%9A%84%E7%94%B5%E8%84%91%E7%9A%84%E5%85%AD%E5%B9%B4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
