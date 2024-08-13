@@ -2,18 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://55kwukai.github.io/about/</loc>
-  </url><url>
-    <loc>https://55kwukai.github.io/posts/%E6%88%91%E5%92%8C%E6%88%91%E7%9A%84%E7%94%B5%E8%84%91%E7%9A%84%E5%85%AD%E5%B9%B4/</loc>
-  </url><url>
-    <loc>https://55kwukai.github.io/posts/%E9%98%BF%E5%87%AF%E6%9A%91%E6%9C%9F%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/</loc>
-  </url><url>
     <loc>https://55kwukai.github.io/categories/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/</loc>
-  </url><url>
-    <loc>https://55kwukai.github.io/posts/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/tags/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/tags/%E6%8E%A2%E7%B4%A2%E4%B8%96%E7%95%8C/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/categories/%E6%97%85%E8%A1%8C/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/life/japan_travel/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/life/</loc>
+    <lastmod>2024-08-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/tech/interview_intern/</loc>
+    <lastmod>2024-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/tags/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2024-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/tech/</loc>
+    <lastmod>2024-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/categories/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2024-05-17T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/tags/%E5%85%B4%E8%B6%A3/</loc>
+    <lastmod>2024-06-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/life/mycomputer_sixthyear/</loc>
+    <lastmod>2024-06-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://55kwukai.github.io/abc/</loc>
+  </url><url>
+    <loc>https://55kwukai.github.io/about/</loc>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/life/mycomputer_sixthyear/</loc>
   </url>
 </urlset>
