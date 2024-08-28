@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Categories on Kai Wu&#39;Blog</title>
+    <link>https://55kwukai.github.io/categories/</link>
+    <description>Recent content in Categories on Kai Wu&#39;Blog</description>
+    <image>
+      <title>Kai Wu&#39;Blog</title>
+      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>旅行</title>
+      <link>https://55kwukai.github.io/categories/%E6%97%85%E8%A1%8C/</link>
+      <pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/categories/%E6%97%85%E8%A1%8C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试</title>
+      <link>https://55kwukai.github.io/categories/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/categories/%E9%9D%A2%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

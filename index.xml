@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Kai Wu&#39;Blog</title>
+    <link>https://55kwukai.github.io/</link>
+    <description>Recent content on Kai Wu&#39;Blog</description>
+    <image>
+      <title>Kai Wu&#39;Blog</title>
+      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>日本游记2024.5</title>
+      <link>https://55kwukai.github.io/posts/life/japan_travel/</link>
+      <pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/life/japan_travel/</guid>
+      <description>旅行日记📓 Osaka： 28,May 今天是赶飞机的一天。早起吃上一口Mom亲手制作的饺子🥟，随后开启🔛我的日本之旅。由于这是我第一次出国，还是一个人，所</description>
+    </item>
+    
+    <item>
+      <title>SDE面试经验分享</title>
+      <link>https://55kwukai.github.io/posts/tech/interview_intern/</link>
+      <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/tech/interview_intern/</guid>
+      <description>阿里（淘菜菜） 第一次往往是比较曲折的 时间：2023.04.03 申请职位：Java研发工程师 流程： 自我介绍-&amp;gt;项目提问-&amp;gt;Java</description>
+    </item>
+    
+    <item>
+      <title>我和“我的电脑💻”的六年</title>
+      <link>https://55kwukai.github.io/posts/life/mycomputer_sixthyear/</link>
+      <pubDate>Wed, 31 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/life/mycomputer_sixthyear/</guid>
+      <description>《3202年一台电脑可以用几年》 我的Windows电脑是在高考那年买的，距离现在已经过去了整整六年。（突然发现又要高考了）惊呼我的电脑竟然陪</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://55kwukai.github.io/abc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/abc/</guid>
+      <description>👋About Me Name: Kai Wu
+Gender: 👨‍💻Man
+Location: 🏞️China,HangZhou
+Occupation: 🧑‍💼Product Manager
+Hobby: Fitness , Karaoke , Do some interesting , Coding
+Intro：I am now a product manager @ MANYCORE TECH INC.
+I graduated as a master student of intelligent manufacturing from the Zhejiang University Fluid Power &amp;amp; Mechatronic Systems National Key Lab CAX Group. I was fortunate to be advised by Prof.Hongyao Shen. I have interned as a software engineer in ZJUAM.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://55kwukai.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/about/</guid>
+      <description>About Me Name: Kai Wu
+Gender: 👨‍💻Man
+Location: 🏞️China,HangZhou
+Occupation: 🧑‍💼Product Manager @ MANYCORE TECH INC.
+Hobby: Fitness , Karaoke , Do some interesting , Coding
+Attitude：Simple, Focus, Open</description>
+    </item>
+    
+  </channel>
+</rss>
