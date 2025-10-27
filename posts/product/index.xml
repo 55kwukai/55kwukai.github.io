@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>产品😯 on Kai Wu&#39;Blog</title>
+    <link>https://55kwukai.github.io/posts/product/</link>
+    <description>Recent content in 产品😯 on Kai Wu&#39;Blog</description>
+    <image>
+      <title>Kai Wu&#39;Blog</title>
+      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 03 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/posts/product/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>产品“哲学”</title>
+      <link>https://55kwukai.github.io/posts/product/philosophyofproduct/</link>
+      <pubDate>Sat, 03 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/philosophyofproduct/</guid>
+      <description>以事件为颗粒度，收录了一些产品哲学，希望对你有帮助！ PLG&amp;mdash;霄凡分享 Acquisition： SEM(Search Engine Marketing)：付费流量 SEO(Search</description>
+    </item>
+    
+  </channel>
+</rss>

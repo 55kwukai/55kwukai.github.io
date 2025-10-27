@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>生活 on Kai Wu&#39;Blog</title>
+    <link>https://55kwukai.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on Kai Wu&#39;Blog</description>
+    <image>
+      <title>Kai Wu&#39;Blog</title>
+      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 01 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/categories/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>摘抄</title>
+      <link>https://55kwukai.github.io/posts/life/extractcontent/</link>
+      <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/life/extractcontent/</guid>
+      <description>2025.4.4 真正做事的人，都是偏积极和正能量的。做事情的人，大部分时候都是失败和挫折。顺风顺水总是少数时候，如果没有积极和正能量的内在品质支撑，根本就</description>
+    </item>
+    
+  </channel>
+</rss>
