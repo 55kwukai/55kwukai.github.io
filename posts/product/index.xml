@@ -11,7 +11,25 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 03 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/posts/product/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/posts/product/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>建模编辑器的宏功能：让重复的公式不再痛苦</title>
+      <link>https://55kwukai.github.io/posts/product/macroshowcase/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/macroshowcase/</guid>
+      <description>问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公</description>
+    </item>
+    
+    <item>
+      <title>参数化模型自动化检测</title>
+      <link>https://55kwukai.github.io/posts/product/modeltest/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/modeltest/</guid>
+      <description>问题 参数化模型的复杂性导致建模过程容易出错。一旦错误在发布后被发现，轻则返工，重则造成资损。 当前的检测方式主要依赖人工： 效率低：需要手动在工</description>
+    </item>
+    
     <item>
       <title>产品“哲学”</title>
       <link>https://55kwukai.github.io/posts/product/philosophyofproduct/</link>

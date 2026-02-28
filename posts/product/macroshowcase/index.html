@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>建模编辑器的宏功能：让重复的公式不再痛苦 | Kai Wu&#39;Blog</title>
+<meta name="keywords" content="宏定义, 公式复用">
+<meta name="description" content="问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公">
+<meta name="author" content="KAI">
+<link rel="canonical" href="https://55kwukai.github.io/posts/product/macroshowcase/">
+<meta name="google-site-verification" content="XYZabc">
+<meta name="yandex-verification" content="XYZabc">
+<meta name="msvalidate.01" content="XYZabc">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://55kwukai.github.io/img/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://55kwukai.github.io/img/favicon-16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://55kwukai.github.io/img/favicon-32x32.ico">
+<link rel="apple-touch-icon" href="https://55kwukai.github.io/img/apple-touch-icon.png">
+<link rel="mask-icon" href="https://55kwukai.github.io/img/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script><meta property="og:title" content="建模编辑器的宏功能：让重复的公式不再痛苦" />
+<meta property="og:description" content="问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://55kwukai.github.io/posts/product/macroshowcase/" /><meta property="og:image" content="https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2025-09-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-02-25T00:00:00+00:00" /><meta property="og:site_name" content="ExampleSite" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
+
+<meta name="twitter:title" content="建模编辑器的宏功能：让重复的公式不再痛苦"/>
+<meta name="twitter:description" content="问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "文章",
+      "item": "https://55kwukai.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "产品😯",
+      "item": "https://55kwukai.github.io/posts/product/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "建模编辑器的宏功能：让重复的公式不再痛苦",
+      "item": "https://55kwukai.github.io/posts/product/macroshowcase/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "建模编辑器的宏功能：让重复的公式不再痛苦",
+  "name": "建模编辑器的宏功能：让重复的公式不再痛苦",
+  "description": "问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公",
+  "keywords": [
+    "宏定义", "公式复用"
+  ],
+  "articleBody": "问题 做建模工具的时候，遇到一个很头疼的问题：\n用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公式可能有几十行。这种公式写一次不难，但是：\n重复太多：几十个模型都要写类似的逻辑 维护困难：改一个逻辑要改几十个地方 容易出错：复制粘贴时容易漏改参数 虽然之前做了批量功能来提效，但还是不够。从软件工程的角度看，这就是缺少\"封装“和”复用\"。\n解决思路 借鉴编程语言里的\"宏\"概念，让用户可以：\n定义宏：把常用的计算逻辑封装成宏，比如 CALC_AREA(width, depth) 导入宏：通过变量系（现有的一种与模型绑定的资源）导入到模型中 使用宏：在公式编辑器里直接调用，比如 common_utils.CALC_AREA(#W, #D) 这样一来，复杂逻辑只需要维护一份，所有模型都能复用。\n在线体验 🔗 原型地址: https://ai-prototype-macro.vercel.app/\n可以试试：\n新建一个命名空间 添加几个宏，配置参数和表达式 修改宏内容，发布新版本 查看版本历史和差异对比 原型介绍 1. 定义宏 创建宏时需要填写：\n宏名称：遵循变量命名规则 描述：可选，方便其他人理解 参数：支持多个参数，每个参数有名称和说明 宏内容：具体的计算表达式 设计考虑：\n宏名称不能重复，创建时要校验 编辑宏会影响所有引用它的模型，所以要慎重 删除宏时要有明确的提示：“此操作会影响所有引用该宏的模型” 2. 使用方式 在编辑器的公式编辑器中，导入变量系后就能调用宏：\n1 common_utils.CALC_AREA(#W, #D) 支持联想提示 输入不存在的宏会报错 鼠标悬停可以看到宏的定义 3. 技术实现 这是个纯前端原型：\n原生 JavaScript，没用框架 用 localStorage 模拟数据存储 实现了基础的版本控制和 diff 算法 一点思考 做这个原型的过程中，最大的感受是：B端产品的复杂度往往不在功能本身，而在影响面的控制。\n一个简单的\"编辑宏\"操作，背后可能影响成千上万个模型。如何让用户清楚地知道影响范围，如何提供安全的回退机制，这些才是设计的重点。\n版本管理不是为了炫技，而是为了给用户\"后悔\"的机会。\n",
+  "wordCount" : "824",
+  "inLanguage": "en",
+  "datePublished": "2025-09-25T00:00:00Z",
+  "dateModified": "2026-02-25T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "KAI"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://55kwukai.github.io/posts/product/macroshowcase/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kai Wu'Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://55kwukai.github.io/img/favicon.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://55kwukai.github.io/" accesskey="h" title="Kai Wu (Alt + H)">
+                <img src="https://55kwukai.github.io/img/kdd2.png" alt="" aria-label="logo"
+                    height="35">Kai Wu</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://55kwukai.github.io/about/" title="👋About">
+                    <span>👋About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://55kwukai.github.io/posts/" title="📔Posts">
+                    <span>📔Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://55kwukai.github.io/Resume.pdf" title="📄Resume">
+                    <span>📄Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://55kwukai.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://55kwukai.github.io/posts/">文章</a>&nbsp;»&nbsp;<a href="https://55kwukai.github.io/posts/product/">产品😯</a></div>
+    <h1 class="post-title">
+      建模编辑器的宏功能：让重复的公式不再痛苦
+    </h1>
+    <div class="post-meta"><span title='2025-09-25 00:00:00 +0000 UTC'>September 25, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;824 words&nbsp;·&nbsp;KAI
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#问题">问题</a></li>
+    <li><a href="#解决思路">解决思路</a></li>
+    <li><a href="#在线体验">在线体验</a></li>
+    <li><a href="#原型介绍">原型介绍</a>
+      <ul>
+        <li><a href="#1-定义宏">1. 定义宏</a></li>
+        <li><a href="#2-使用方式">2. 使用方式</a></li>
+        <li><a href="#3-技术实现">3. 技术实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#一点思考">一点思考</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="问题">问题<a hidden class="anchor" aria-hidden="true" href="#问题">#</a></h2>
+<p>做建模工具的时候，遇到一个很头疼的问题：</p>
+<p>用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公式可能有几十行。这种公式写一次不难，但是：</p>
+<ul>
+<li><strong>重复太多</strong>：几十个模型都要写类似的逻辑</li>
+<li><strong>维护困难</strong>：改一个逻辑要改几十个地方</li>
+<li><strong>容易出错</strong>：复制粘贴时容易漏改参数</li>
+</ul>
+<p>虽然之前做了批量功能来提效，但还是不够。从软件工程的角度看，这就是缺少&quot;<strong>封装</strong>&ldquo;和&rdquo;<strong>复用</strong>&quot;。</p>
+<h2 id="解决思路">解决思路<a hidden class="anchor" aria-hidden="true" href="#解决思路">#</a></h2>
+<p>借鉴编程语言里的&quot;宏&quot;概念，让用户可以：</p>
+<ol>
+<li><strong>定义宏</strong>：把常用的计算逻辑封装成宏，比如 <code>CALC_AREA(width, depth)</code></li>
+<li><strong>导入宏</strong>：通过变量系（现有的一种与模型绑定的资源）导入到模型中</li>
+<li><strong>使用宏</strong>：在公式编辑器里直接调用，比如 <code>common_utils.CALC_AREA(#W, #D)</code></li>
+</ol>
+<p>这样一来，复杂逻辑只需要维护一份，所有模型都能复用。</p>
+<h2 id="在线体验">在线体验<a hidden class="anchor" aria-hidden="true" href="#在线体验">#</a></h2>
+<p>🔗 <strong>原型地址</strong>: <a href="https://ai-prototype-macro.vercel.app/">https://ai-prototype-macro.vercel.app/</a></p>
+<p><img loading="lazy" src="images/main-tab.png" alt="宏定义界面"  />
+</p>
+<p>可以试试：</p>
+<ol>
+<li>新建一个命名空间</li>
+<li>添加几个宏，配置参数和表达式</li>
+<li>修改宏内容，发布新版本</li>
+<li>查看版本历史和差异对比</li>
+</ol>
+<h2 id="原型介绍">原型介绍<a hidden class="anchor" aria-hidden="true" href="#原型介绍">#</a></h2>
+<h3 id="1-定义宏">1. 定义宏<a hidden class="anchor" aria-hidden="true" href="#1-定义宏">#</a></h3>
+<p><img loading="lazy" src="images/macro-creation.png" alt="image-20260226152733154"  />
+</p>
+<p>创建宏时需要填写：</p>
+<ul>
+<li><strong>宏名称</strong>：遵循变量命名规则</li>
+<li><strong>描述</strong>：可选，方便其他人理解</li>
+<li><strong>参数</strong>：支持多个参数，每个参数有名称和说明</li>
+<li><strong>宏内容</strong>：具体的计算表达式</li>
+</ul>
+<p><strong>设计考虑</strong>：</p>
+<ul>
+<li>宏名称不能重复，创建时要校验</li>
+<li>编辑宏会影响所有引用它的模型，所以要慎重</li>
+<li>删除宏时要有明确的提示：&ldquo;此操作会影响所有引用该宏的模型&rdquo;</li>
+</ul>
+<h3 id="2-使用方式">2. 使用方式<a hidden class="anchor" aria-hidden="true" href="#2-使用方式">#</a></h3>
+<p>在编辑器的公式编辑器中，导入变量系后就能调用宏：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">common_utils.CALC_AREA(#W, #D)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>支持联想提示</li>
+<li>输入不存在的宏会报错</li>
+<li>鼠标悬停可以看到宏的定义</li>
+</ul>
+<h3 id="3-技术实现">3. 技术实现<a hidden class="anchor" aria-hidden="true" href="#3-技术实现">#</a></h3>
+<p>这是个纯前端原型：</p>
+<ul>
+<li>原生 JavaScript，没用框架</li>
+<li>用 localStorage 模拟数据存储</li>
+<li>实现了基础的版本控制和 diff 算法</li>
+</ul>
+<h2 id="一点思考">一点思考<a hidden class="anchor" aria-hidden="true" href="#一点思考">#</a></h2>
+<p>做这个原型的过程中，最大的感受是：<strong>B端产品的复杂度往往不在功能本身，而在影响面的控制</strong>。</p>
+<p>一个简单的&quot;编辑宏&quot;操作，背后可能影响成千上万个模型。如何让用户清楚地知道影响范围，如何提供安全的回退机制，这些才是设计的重点。</p>
+<p>版本管理不是为了炫技，而是为了给用户&quot;后悔&quot;的机会。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://55kwukai.github.io/tags/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/">产品设计</a></li>
+      <li><a href="https://55kwukai.github.io/tags/%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7/">建模工具</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://55kwukai.github.io/posts/life/filmsandtelevision/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>影视</span>
+  </a>
+  <a class="next" href="https://55kwukai.github.io/posts/product/modeltest/">
+    <span class="title">Next »</span>
+    <br>
+    <span>参数化模型自动化检测</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

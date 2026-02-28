@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 06 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LLM后训练基础</title>
+      <link>https://55kwukai.github.io/posts/tech/post-traininglesson/</link>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/tech/post-traininglesson/</guid>
+      <description>Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model Post-training：让模型学会 chat，或完成指</description>
+    </item>
+    
     <item>
       <title>澳大利亚游记2025.12</title>
       <link>https://55kwukai.github.io/posts/life/australiatravel/</link>
@@ -28,6 +37,24 @@
       
       <guid>https://55kwukai.github.io/posts/life/filmsandtelevision/</guid>
       <description>美剧 权力的游戏 Winter is coming! 从2025年 12 月开始看权游，除了精彩的剧情之外，我更佩服里面每个人物的勇气和自信。收录了一些我喜欢的片段和台词。 第一季 小</description>
+    </item>
+    
+    <item>
+      <title>建模编辑器的宏功能：让重复的公式不再痛苦</title>
+      <link>https://55kwukai.github.io/posts/product/macroshowcase/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/macroshowcase/</guid>
+      <description>问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公</description>
+    </item>
+    
+    <item>
+      <title>参数化模型自动化检测</title>
+      <link>https://55kwukai.github.io/posts/product/modeltest/</link>
+      <pubDate>Thu, 08 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/modeltest/</guid>
+      <description>问题 参数化模型的复杂性导致建模过程容易出错。一旦错误在发布后被发现，轻则返工，重则造成资损。 当前的检测方式主要依赖人工： 效率低：需要手动在工</description>
     </item>
     
     <item>
@@ -59,11 +86,11 @@
     
     <item>
       <title>SDE面试经验分享</title>
-      <link>https://55kwukai.github.io/posts/tech/interview_intern/</link>
+      <link>https://55kwukai.github.io/posts/tech/interviewintern/</link>
       <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://55kwukai.github.io/posts/tech/interview_intern/</guid>
-      <description>阿里（淘菜菜） 第一次往往是比较曲折的 时间：2023.04.03 申请职位：Java研发工程师 流程： 自我介绍-&amp;gt;项目提问-&amp;gt;Java</description>
+      <guid>https://55kwukai.github.io/posts/tech/interviewintern/</guid>
+      <description>阿里（淘菜菜） 时间：2023.04.03 申请职位：Java研发工程师 流程： 自我介绍-&amp;gt;项目提问-&amp;gt;Java基础八股文 面试环节： -</description>
     </item>
     
     <item>

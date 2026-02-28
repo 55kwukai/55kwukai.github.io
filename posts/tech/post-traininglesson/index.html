@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LLM后训练基础 | Kai Wu&#39;Blog</title>
+<meta name="keywords" content="Post-Training">
+<meta name="description" content="Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model Post-training：让模型学会 chat，或完成指">
+<meta name="author" content="KAI">
+<link rel="canonical" href="https://55kwukai.github.io/posts/tech/post-traininglesson/">
+<meta name="google-site-verification" content="XYZabc">
+<meta name="yandex-verification" content="XYZabc">
+<meta name="msvalidate.01" content="XYZabc">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.3613efbd0b1772781e8f49935e973cae632a7f61471c05b17be155505ccf87b5.css" integrity="sha256-NhPvvQsXcngej0mTXpc8rmMqf2FHHAWxe&#43;FVUFzPh7U=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://55kwukai.github.io/img/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://55kwukai.github.io/img/favicon-16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://55kwukai.github.io/img/favicon-32x32.ico">
+<link rel="apple-touch-icon" href="https://55kwukai.github.io/img/apple-touch-icon.png">
+<link rel="mask-icon" href="https://55kwukai.github.io/img/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-123-45', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script><meta property="og:title" content="LLM后训练基础" />
+<meta property="og:description" content="Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model Post-training：让模型学会 chat，或完成指" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://55kwukai.github.io/posts/tech/post-traininglesson/" /><meta property="og:image" content="https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-02-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-02-26T00:00:00+00:00" /><meta property="og:site_name" content="ExampleSite" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"/>
+
+<meta name="twitter:title" content="LLM后训练基础"/>
+<meta name="twitter:description" content="Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model Post-training：让模型学会 chat，或完成指"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "文章",
+      "item": "https://55kwukai.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "技术🧑‍🔬",
+      "item": "https://55kwukai.github.io/posts/tech/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "LLM后训练基础",
+      "item": "https://55kwukai.github.io/posts/tech/post-traininglesson/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LLM后训练基础",
+  "name": "LLM后训练基础",
+  "description": "Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model Post-training：让模型学会 chat，或完成指",
+  "keywords": [
+    "Post-Training"
+  ],
+  "articleBody": "Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model\nPost-training：让模型学会 chat，或完成指定任务，输出Chat/Instrct Model\n(Continual) Post-training: 让模型在某个领域成为专家，Changing behaviors or enhancing capabilities，输出 Customized Model\n后训练的三种方法\nSFT (Supervised Fine Tuning) : 数据集由Labeled Prompt-Response Pairs 组成，帮助它学习遵循指令或使用工具。SFT对引入新行为和对模型做重大更改非常有效。 DPO (Direct Preference Optimization) : 数据集由 Prompt + Good and Bad Responses组成，让它靠近好的回答，远离坏的回答。 RL (Reinforcement Learning) : Prompt + Reward Function，奖励函数会对每个 prompt 生成的 response 进行打分，LLM 会根据分数调整权重，以生成更好的回答。 Do you really need post-training SFT 可以从任意模型开始，可以是 BaseModel\nBest Use Cases for SFT Jumpstarting new model behavior Pre-trained models -\u003e Instruct Model Non-reasoning models -\u003e reasoning models Let the model uses certain tools without providing tool descriptions in the prompt Improving model capabilities Distilling capabilities for small models by training on high-quality synthetic data generated from larger models Principles of SFT Data Curation Common methods for high-quality SFT data curation Distillation: Generate responses from a stronger and larger instruct model Best of K / rejection sampling: Generate multiple responses from the original model, select the best among them Filtering: start from larger scale SFT dataset, filter according to the quality of responses and diversity of the prompts Quality \u003e quantity for improving capabilities 1,000 high-quality, diverse data \u003e 1,000,000 mixed-quality data Full Fine-tuning vs Parameter Efficient Fine-tuning FFT 的 Delta W 是一个 d by d 的矩阵，PEFT 的 BA 是一个 d by r, r by d 的矩阵，r 通常远小于d。 PEFT 需要更新的参数只有B, A两个矩阵，size 远小于 FFT，这在梯度计算过程中节省了大量内存，并且计算更高效。\nFFT和PEFT都可以被用在三种后训练的方法中。\nSFT Practice 标准训练学习率：8e-5\n之前微调过Gemma_3_270M，使用 QLoRA实现 text2emoji\nDPO(Direct Preference Optimization) 可以从任意模型开始，通常是Instruct Model。例如通过 DPO 更改 LLM 的 identity\nCross-Entropy Loss（交叉熵损失） 交叉熵损失用来衡量模型预测的概率分布和真实概率分布之间的差距，差距越大，损失越高。\nDPO 旨在惩罚 negative response，鼓励positive response\nSigmoid 函数 将任意实数，压缩到 0-1 之间的一个函数。\n与 Softmax 函数的区别：Softmax 函数要归一化，Sigmoid 不需要\nDPO-Loss Function\nBest Use Cases for DPO Changing model behavior Making small modifications of model responses Indentity Multilingual Instruction following Safety Improving model capabilities Better than SFT in improving model capabilities due to contrastive nature Online DPO is better for improving capabilities than offline DPO Principles of DPO Data Curation Common methods for high-quality DPO data curation Correction（纠正）: Generate responses from original model as negative, make enhancements as positive response Example: I’m Llama (Negative) -\u003e I’m Athene (Positive) Online / On-policy: Your positive \u0026 negative example can both come from your model’s distribution. One may generate multiple responses from the current model for the.same prompt, and collect the best response as positive sample and the worst response as the negative One can choose best / worst response based on reward functions / human judgement Avoid overfitting DPO is doing reward learning with can easily overfit to some shortcut when the preferred answers have shortcuts to learn compared with the non-preferred answers Example: when positive sample always contains a few special words while negative samples do not（在这种数据集上训练是脆弱的，可能需要更多的超参数调优才能使DPO 在这里正常工作） Online RL Online vs Offline Online\nThe model learns by generating new responses in real time\nOffline\nThe model learns purely from a pre-collected prompt-response(-reward) tuple\nOnline RL: Let Model Explore Better Responses by Itself Update步骤有多种算法，常见的包括PPO(Proximal Policy Optimization), GRPO(Grouped Relative Policy Optimization)\nReward Function in Online RL Option 1: Trained Reward Function Usually initialized from an existing instruct model, then trained on large-scale human / machine generated preference data Works for any open-ended generations Good for improving chat \u0026 safety Less accurate for correctness-based domains like coding, math, function calling etc. Option2: Verifiable Reward 适用场景和特点，见图中右侧部分\nPolicy Training in Online RL Both PPO and GRPO are very efficient online RL algorithms!\n第一版 ChatGPT 使用的是 PPO；GRPO 由 deepseek 首创，用在后续的 deepseek 模型中。\nGRPO(Only assigning credits to full responses instead of individual token) Well-suited for binary (often correctness-based) reward Requires larger amount of samples Requires less GPU memory (no value model needed) PPO(Value model for evaluate every token advantage) Works well with reward model or binary reward More sample efficient with a well-trained value model More GPU memory (value model) Conclusion Methods Principles Pros \u0026 Cons SFT Imitate the example responses by maximizing the probability of the response Pros: simple implementation, great for jump-starting new model behavior\nCons: may degrade other performances for tasks not included in training data Online-RL Maximize the reward for the response Pros: Better at improving model capabilities without degrading performance in unseen tasks\nCons: most complex implementation, requires good design of reward functions DPO Encourage good answer while discouraging bad answer provided Pros: train model in a contrastive fashion; good at fixing wrong behaviors and improving targeted capabilities\nCons: may be prone to overfitting; implementation complexity in between SFT \u0026 Online RL SFT引入了外部的 example，模型更新权重后，对于非数据集内的问答，回答会跑偏，也就是所谓的性能降低。而 RL 的reward-update 过程，都是在模型native manifold，性能不会下降太多。\n",
+  "wordCount" : "1462",
+  "inLanguage": "en",
+  "datePublished": "2026-02-18T00:00:00Z",
+  "dateModified": "2026-02-26T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "KAI"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://55kwukai.github.io/posts/tech/post-traininglesson/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kai Wu'Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://55kwukai.github.io/img/favicon.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://55kwukai.github.io/" accesskey="h" title="Kai Wu (Alt + H)">
+                <img src="https://55kwukai.github.io/img/kdd2.png" alt="" aria-label="logo"
+                    height="35">Kai Wu</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://55kwukai.github.io/about/" title="👋About">
+                    <span>👋About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://55kwukai.github.io/posts/" title="📔Posts">
+                    <span>📔Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://55kwukai.github.io/Resume.pdf" title="📄Resume">
+                    <span>📄Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://55kwukai.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://55kwukai.github.io/posts/">文章</a>&nbsp;»&nbsp;<a href="https://55kwukai.github.io/posts/tech/">技术🧑‍🔬</a></div>
+    <h1 class="post-title">
+      LLM后训练基础
+    </h1>
+    <div class="post-meta"><span title='2026-02-18 00:00:00 +0000 UTC'>February 18, 2026</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;1462 words&nbsp;·&nbsp;KAI
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#do-you-really-need-post-training">Do you really need post-training</a></li>
+    <li><a href="#sft">SFT</a>
+      <ul>
+        <li><a href="#best-use-cases-for-sft">Best Use Cases for SFT</a></li>
+        <li><a href="#principles-of-sft-data-curation">Principles of SFT Data Curation</a></li>
+        <li><a href="#full-fine-tuning-vs-parameter-efficient-fine-tuning">Full Fine-tuning vs Parameter Efficient Fine-tuning</a></li>
+        <li><a href="#sft-practice">SFT Practice</a></li>
+      </ul>
+    </li>
+    <li><a href="#dpodirect-preference-optimization">DPO(Direct Preference Optimization)</a>
+      <ul>
+        <li><a href="#cross-entropy-loss交叉熵损失">Cross-Entropy Loss（交叉熵损失）</a></li>
+        <li><a href="#sigmoid-函数">Sigmoid 函数</a></li>
+        <li><a href="#best-use-cases-for-dpo">Best Use Cases for DPO</a></li>
+        <li><a href="#principles-of-dpo-data-curation">Principles of DPO Data Curation</a></li>
+      </ul>
+    </li>
+    <li><a href="#online-rl">Online RL</a>
+      <ul>
+        <li><a href="#online-vs-offline">Online vs Offline</a></li>
+        <li><a href="#online-rl-let-model-explore-better-responses-by-itself">Online RL: Let Model Explore Better Responses by Itself</a></li>
+        <li><a href="#reward-function-in-online-rl">Reward Function in Online RL</a></li>
+        <li><a href="#policy-training-in-online-rl">Policy Training in Online RL</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="post-training-lesson-from-deeplearningai">Post-Training lesson from DeepLearning.AI<a hidden class="anchor" aria-hidden="true" href="#post-training-lesson-from-deeplearningai">#</a></h1>
+<h2 id="intro">Intro<a hidden class="anchor" aria-hidden="true" href="#intro">#</a></h2>
+<p>Pre-training：喂数据，让模型学会 predict next token，输出Base Model</p>
+<p>Post-training：让模型学会 chat，或完成指定任务，输出Chat/Instrct Model</p>
+<p>(Continual) Post-training: 让模型在某个领域成为专家，Changing behaviors or enhancing capabilities，输出 Customized Model</p>
+<p>后训练的三种方法</p>
+<ul>
+<li>SFT (Supervised Fine Tuning) : 数据集由Labeled Prompt-Response Pairs 组成，帮助它学习遵循指令或使用工具。SFT对引入新行为和对模型做重大更改非常有效。</li>
+<li>DPO (Direct Preference Optimization) : 数据集由 Prompt + Good and Bad Responses组成，让它靠近好的回答，远离坏的回答。</li>
+<li>RL (Reinforcement Learning) :  Prompt + Reward Function，奖励函数会对每个 prompt 生成的 response 进行打分，LLM 会根据分数调整权重，以生成更好的回答。</li>
+</ul>
+<h2 id="do-you-really-need-post-training">Do you really need post-training<a hidden class="anchor" aria-hidden="true" href="#do-you-really-need-post-training">#</a></h2>
+<p><img loading="lazy" src="images/cases-methods.jpeg" alt=""  />
+</p>
+<h2 id="sft">SFT<a hidden class="anchor" aria-hidden="true" href="#sft">#</a></h2>
+<p>可以从任意模型开始，可以是 BaseModel</p>
+<h3 id="best-use-cases-for-sft">Best Use Cases for SFT<a hidden class="anchor" aria-hidden="true" href="#best-use-cases-for-sft">#</a></h3>
+<ul>
+<li>Jumpstarting new model behavior
+<ul>
+<li>Pre-trained models -&gt; Instruct Model</li>
+<li>Non-reasoning models -&gt; reasoning models</li>
+<li>Let the model uses certain tools without providing tool descriptions in the prompt</li>
+</ul>
+</li>
+<li>Improving model capabilities
+<ul>
+<li>Distilling capabilities for small models by training on high-quality synthetic data generated from larger models</li>
+</ul>
+</li>
+</ul>
+<h3 id="principles-of-sft-data-curation">Principles of SFT Data Curation<a hidden class="anchor" aria-hidden="true" href="#principles-of-sft-data-curation">#</a></h3>
+<ul>
+<li>Common methods for high-quality SFT data curation
+<ul>
+<li><strong>Distillation:</strong> Generate responses from a stronger and larger instruct model</li>
+<li><strong>Best of K / rejection sampling:</strong> Generate multiple responses from the original model, select the best among them</li>
+<li><strong>Filtering:</strong> start from larger scale SFT dataset, filter according to the quality of responses and diversity of the prompts</li>
+</ul>
+</li>
+<li><strong>Quality &gt; quantity</strong> for improving capabilities
+<ul>
+<li>1,000 high-quality, diverse data &gt; 1,000,000 mixed-quality data</li>
+</ul>
+</li>
+</ul>
+<h3 id="full-fine-tuning-vs-parameter-efficient-fine-tuning">Full Fine-tuning vs Parameter Efficient Fine-tuning<a hidden class="anchor" aria-hidden="true" href="#full-fine-tuning-vs-parameter-efficient-fine-tuning">#</a></h3>
+<p>FFT 的 Delta W 是一个 d by d 的矩阵，PEFT 的 BA 是一个 d by r, r by d 的矩阵，r 通常远小于d。 PEFT 需要更新的参数只有B, A两个矩阵，size 远小于 FFT，这在梯度计算过程中节省了大量内存，并且计算更高效。</p>
+<p>FFT和PEFT都可以被用在三种后训练的方法中。</p>
+<h3 id="sft-practice">SFT Practice<a hidden class="anchor" aria-hidden="true" href="#sft-practice">#</a></h3>
+<p>标准训练学习率：8e-5</p>
+<p>之前<a href="https://colab.research.google.com/github/google-gemini/gemma-cookbook/blob/main/Demos/Emoji-Gemma-on-Web/resources/Fine_tune_Gemma_3_270M_for_emoji_generation.ipynb#scrollTo=a110dfce">微调过Gemma_3_270M</a>，使用 QLoRA实现 text2emoji</p>
+<h2 id="dpodirect-preference-optimization">DPO(Direct Preference Optimization)<a hidden class="anchor" aria-hidden="true" href="#dpodirect-preference-optimization">#</a></h2>
+<p>可以从任意模型开始，通常是Instruct Model。例如通过 DPO 更改 LLM 的 identity</p>
+<h3 id="cross-entropy-loss交叉熵损失">Cross-Entropy Loss（交叉熵损失）<a hidden class="anchor" aria-hidden="true" href="#cross-entropy-loss交叉熵损失">#</a></h3>
+<p>交叉熵损失用来衡量模型<strong>预测的概率分布和真实概率分布</strong>之间的差距，差距越大，损失越高。</p>
+<p>DPO 旨在惩罚 negative response，鼓励positive response</p>
+<h3 id="sigmoid-函数">Sigmoid 函数<a hidden class="anchor" aria-hidden="true" href="#sigmoid-函数">#</a></h3>
+<p>将任意实数，压缩到 0-1 之间的一个函数。</p>
+<p>与 Softmax 函数的区别：Softmax 函数要归一化，Sigmoid 不需要</p>
+<p>DPO-Loss Function</p>
+<p><img loading="lazy" src="images/DPO-loss-function.jpeg" alt=""  />
+</p>
+<h3 id="best-use-cases-for-dpo">Best Use Cases for DPO<a hidden class="anchor" aria-hidden="true" href="#best-use-cases-for-dpo">#</a></h3>
+<ul>
+<li>Changing model behavior
+<ul>
+<li>Making small modifications of  model responses
+<ul>
+<li>Indentity</li>
+<li>Multilingual</li>
+<li>Instruction following</li>
+<li>Safety</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Improving model capabilities
+<ul>
+<li>Better than SFT in improving model capabilities due to contrastive nature</li>
+<li>Online DPO is better for improving capabilities than offline DPO</li>
+</ul>
+</li>
+</ul>
+<h3 id="principles-of-dpo-data-curation">Principles of DPO Data Curation<a hidden class="anchor" aria-hidden="true" href="#principles-of-dpo-data-curation">#</a></h3>
+<ul>
+<li>Common methods for high-quality DPO data curation
+<ul>
+<li><strong>Correction</strong>（纠正）: Generate responses from original model as negative, make enhancements as positive response
+<ul>
+<li>Example: I&rsquo;m Llama (Negative) -&gt; I&rsquo;m Athene (Positive)</li>
+</ul>
+</li>
+<li><strong>Online / On-policy</strong>: Your positive &amp; negative example can both come from your model&rsquo;s distribution. One may generate multiple responses from the current model for the.same prompt, and collect the best response as positive sample and the worst response as the negative
+<ul>
+<li>One can choose best / worst response based on <strong>reward functions</strong> / <strong>human judgement</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Avoid overfitting
+<ul>
+<li>DPO is doing reward learning with can easily <strong>overfit to some shortcut</strong> when the preferred answers have shortcuts to learn compared with the non-preferred answers
+<ul>
+<li>Example: when positive sample always contains a few special words while negative samples do not（在这种数据集上训练是脆弱的，可能需要更多的超参数调优才能使DPO 在这里正常工作）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="online-rl">Online RL<a hidden class="anchor" aria-hidden="true" href="#online-rl">#</a></h2>
+<h3 id="online-vs-offline">Online vs Offline<a hidden class="anchor" aria-hidden="true" href="#online-vs-offline">#</a></h3>
+<p>Online</p>
+<p>The model learns by generating new responses in real time</p>
+<p>Offline</p>
+<p>The model learns purely from a pre-collected prompt-response(-reward) tuple</p>
+<h3 id="online-rl-let-model-explore-better-responses-by-itself">Online RL: Let Model Explore Better Responses by Itself<a hidden class="anchor" aria-hidden="true" href="#online-rl-let-model-explore-better-responses-by-itself">#</a></h3>
+<p><img loading="lazy" src="images/Online-RL.jpeg" alt=""  />
+</p>
+<p>Update步骤有多种算法，常见的包括PPO(Proximal Policy Optimization), GRPO(Grouped Relative Policy Optimization)</p>
+<h3 id="reward-function-in-online-rl">Reward Function in Online RL<a hidden class="anchor" aria-hidden="true" href="#reward-function-in-online-rl">#</a></h3>
+<h4 id="option-1-trained-reward-function">Option 1: Trained Reward Function<a hidden class="anchor" aria-hidden="true" href="#option-1-trained-reward-function">#</a></h4>
+<p><img loading="lazy" src="images/Trained-Reward-Model.jpeg" alt=""  />
+</p>
+<ul>
+<li>Usually initialized from an existing instruct model, then trained on large-scale human / machine generated preference data</li>
+<li>Works for any open-ended generations</li>
+<li>Good for improving chat &amp; safety</li>
+<li>Less accurate for correctness-based domains like coding, math, function calling etc.</li>
+</ul>
+<h4 id="option2-verifiable-reward">Option2: Verifiable Reward<a hidden class="anchor" aria-hidden="true" href="#option2-verifiable-reward">#</a></h4>
+<p><img loading="lazy" src="images/Verifiable-Reward.jpeg" alt=""  />
+</p>
+<p>适用场景和特点，见图中右侧部分</p>
+<h3 id="policy-training-in-online-rl">Policy Training in Online RL<a hidden class="anchor" aria-hidden="true" href="#policy-training-in-online-rl">#</a></h3>
+<p>Both PPO and GRPO are very efficient online RL algorithms!</p>
+<p>第一版 ChatGPT 使用的是 PPO；GRPO 由 deepseek 首创，用在后续的 deepseek 模型中。</p>
+<p><img loading="lazy" src="images/PPO&amp;GRPO.jpeg" alt=""  />
+</p>
+<h4 id="grpoonly-assigning-credits-to-full-responses-instead-of-individual-token">GRPO(Only assigning credits to full responses instead of individual token)<a hidden class="anchor" aria-hidden="true" href="#grpoonly-assigning-credits-to-full-responses-instead-of-individual-token">#</a></h4>
+<ul>
+<li>Well-suited for binary (often correctness-based) reward</li>
+<li>Requires larger amount of samples</li>
+<li>Requires less GPU memory (no value model needed)</li>
+</ul>
+<h4 id="ppovalue-model-for-evaluate-every-token-advantage">PPO(Value model for evaluate every token advantage)<a hidden class="anchor" aria-hidden="true" href="#ppovalue-model-for-evaluate-every-token-advantage">#</a></h4>
+<ul>
+<li>Works well with reward model or binary reward</li>
+<li>More sample efficient with a well-trained value model</li>
+<li>More GPU memory (value model)</li>
+</ul>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>Principles</th>
+<th>Pros &amp; Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SFT</td>
+<td>Imitate the example responses by maximizing the probability of the response</td>
+<td>Pros: simple implementation, great for jump-starting new model behavior<br />Cons: may degrade other performances for tasks not included in training data</td>
+</tr>
+<tr>
+<td>Online-RL</td>
+<td>Maximize the reward for the response</td>
+<td>Pros: Better at improving model capabilities without degrading  performance in unseen tasks<br />Cons: most complex implementation, requires good design of reward functions</td>
+</tr>
+<tr>
+<td>DPO</td>
+<td>Encourage good answer while discouraging bad answer provided</td>
+<td>Pros: train model in a contrastive fashion; good at fixing wrong behaviors and improving targeted capabilities<br />Cons: may be prone to overfitting; implementation complexity in between SFT &amp; Online RL</td>
+</tr>
+</tbody>
+</table>
+<p>SFT引入了外部的 example，模型更新权重后，对于非数据集内的问答，回答会跑偏，也就是所谓的性能降低。而 RL 的reward-update 过程，都是在模型native manifold，性能不会下降太多。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://55kwukai.github.io/tags/%E6%8A%80%E6%9C%AF/">技术</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://55kwukai.github.io/posts/life/australiatravel/">
+    <span class="title">Next »</span>
+    <br>
+    <span>澳大利亚游记2025.12</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

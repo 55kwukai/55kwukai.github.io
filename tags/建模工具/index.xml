@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>建模工具 on Kai Wu&#39;Blog</title>
+    <link>https://55kwukai.github.io/tags/%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 建模工具 on Kai Wu&#39;Blog</description>
+    <image>
+      <title>Kai Wu&#39;Blog</title>
+      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/tags/%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>建模编辑器的宏功能：让重复的公式不再痛苦</title>
+      <link>https://55kwukai.github.io/posts/product/macroshowcase/</link>
+      <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/macroshowcase/</guid>
+      <description>问题 做建模工具的时候，遇到一个很头疼的问题： 用户在编辑器里建模，经常要写很长的公式来处理枚举逻辑。比如根据不同的材质、尺寸、样式计算价格，公</description>
+    </item>
+    
+  </channel>
+</rss>
