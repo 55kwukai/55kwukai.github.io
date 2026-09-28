@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 25 Sep 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/categories/%E4%BA%A7%E5%93%81/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/categories/%E4%BA%A7%E5%93%81/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3D模型质量检测</title>
+      <link>https://55kwukai.github.io/posts/product/modeltest/</link>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/modeltest/</guid>
+      <description>3D模型质量检测 问题 参数化模型的复杂性导致建模过程容易出错。一旦错误在发布后被发现，轻则返工，重则造成资损。 当前的检测方式主要依赖人工： 效率</description>
+    </item>
+    
     <item>
       <title>建模编辑器的宏功能：让重复的公式不再痛苦</title>
       <link>https://55kwukai.github.io/posts/product/macroshowcase/</link>

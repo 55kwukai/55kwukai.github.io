@@ -10,8 +10,7 @@
       <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 06 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/posts/life/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="https://55kwukai.github.io/posts/life/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>澳大利亚游记2025.12</title>
       <link>https://55kwukai.github.io/posts/life/australiatravel/</link>
@@ -40,21 +39,21 @@
     </item>
     
     <item>
-      <title>日本游记2024.5</title>
-      <link>https://55kwukai.github.io/posts/life/japantravel/</link>
-      <pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://55kwukai.github.io/posts/life/japantravel/</guid>
-      <description>旅行日记📓 Osaka： 28,May 今天是赶飞机的一天。早起吃上一口Mom亲手制作的饺子🥟，随后开启🔛我的日本之旅。由于这是我第一次出国，还是一个人，所</description>
-    </item>
-    
-    <item>
       <title>我和“我的电脑💻”的六年</title>
       <link>https://55kwukai.github.io/posts/life/mycomputersixthyear/</link>
       <pubDate>Wed, 31 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/life/mycomputersixthyear/</guid>
       <description>《3202年一台电脑可以用几年》 我的Windows电脑是在高考那年买的，距离现在已经过去了整整六年。（突然发现又要高考了）惊呼我的电脑竟然陪</description>
+    </item>
+    
+    <item>
+      <title>日本游记2024.5</title>
+      <link>https://55kwukai.github.io/posts/life/japantravel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/life/japantravel/</guid>
+      <description>旅行日记📓 Osaka： 28,May 今天是赶飞机的一天。早起吃上一口Mom亲手制作的饺子🥟，随后开启🔛我的日本之旅。由于这是我第一次出国，还是一个人，所</description>
     </item>
     
   </channel>

@@ -40,6 +40,15 @@
     </item>
     
     <item>
+      <title>3D模型质量检测</title>
+      <link>https://55kwukai.github.io/posts/product/modeltest/</link>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/modeltest/</guid>
+      <description>3D模型质量检测 问题 参数化模型的复杂性导致建模过程容易出错。一旦错误在发布后被发现，轻则返工，重则造成资损。 当前的检测方式主要依赖人工： 效率</description>
+    </item>
+    
+    <item>
       <title>建模编辑器的宏功能：让重复的公式不再痛苦</title>
       <link>https://55kwukai.github.io/posts/product/macroshowcase/</link>
       <pubDate>Thu, 25 Sep 2025 00:00:00 +0000</pubDate>
@@ -64,15 +73,6 @@
       
       <guid>https://55kwukai.github.io/posts/life/extractcontent/</guid>
       <description>2025.4.4 真正做事的人，都是偏积极和正能量的。做事情的人，大部分时候都是失败和挫折。顺风顺水总是少数时候，如果没有积极和正能量的内在品质支撑，根本就</description>
-    </item>
-    
-    <item>
-      <title>日本游记2024.5</title>
-      <link>https://55kwukai.github.io/posts/life/japantravel/</link>
-      <pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://55kwukai.github.io/posts/life/japantravel/</guid>
-      <description>旅行日记📓 Osaka： 28,May 今天是赶飞机的一天。早起吃上一口Mom亲手制作的饺子🥟，随后开启🔛我的日本之旅。由于这是我第一次出国，还是一个人，所</description>
     </item>
     
     <item>
@@ -108,12 +108,12 @@ Attitude：Why Not Me</description>
     </item>
     
     <item>
-      <title></title>
-      <link>https://55kwukai.github.io/posts/product/modeltest/</link>
+      <title>日本游记2024.5</title>
+      <link>https://55kwukai.github.io/posts/life/japantravel/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://55kwukai.github.io/posts/product/modeltest/</guid>
-      <description>-&amp;ndash; title: &amp;ldquo;3D模型质量检测&amp;rdquo; author: &amp;ldquo;KAI&amp;rdquo; date: 2025-11-25 lastmod: 2026-09-27 tags: [ &amp;ldquo;Verify&amp;rdquo;, &amp;ldquo;3D&amp;rdquo; ] categories: [ &amp;ldquo;产品&amp;rdquo; ] keywords: [ &amp;ldquo;Web IDE&amp;rdquo;, &amp;ldquo;DSL 设计&amp;rdquo; ] -&amp;ndash;</description>
+      <guid>https://55kwukai.github.io/posts/life/japantravel/</guid>
+      <description>旅行日记📓 Osaka： 28,May 今天是赶飞机的一天。早起吃上一口Mom亲手制作的饺子🥟，随后开启🔛我的日本之旅。由于这是我第一次出国，还是一个人，所</description>
     </item>
     
   </channel>
