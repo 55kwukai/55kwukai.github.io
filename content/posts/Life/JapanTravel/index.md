@@ -1,21 +1,13 @@
 ---
-title: "日本游记2024.5"                         
-author: "KAI"  
-# description : ""    
-date: 2024-8-14 
-lastmod: 2024-08-14          
-
-tags : [                                    
-"探索世界",
-]
-categories : [                              
-"旅行",
-]
-keywords : [
-"日本", 
-"毕业旅行",
-“出国”
-]
+title: "日本游记2024.5"
+date: 2024-8-14
+tags:
+  - 旅行
+categories:
+  - 生活
+keywords:
+  - 日本
+  - 毕业旅行
 ---
 
 ## 旅行日记📓

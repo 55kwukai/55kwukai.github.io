@@ -1,18 +1,12 @@
 ---
-title: "影视"                         
-author: "KAI"  
-# description : ""    
+title: "影视"
 date: 2025-12-01
-lastmod: 2025-12-17          
-tags : [                                    
-"",
-]
-categories : [                              
-"生活",
-]
-keywords : [
-"精神世界",
-]
+tags:
+  - 随笔
+categories:
+  - 生活
+keywords:
+  - 影视
 ---
 
 # 美剧

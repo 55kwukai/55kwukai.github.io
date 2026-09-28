@@ -1,21 +1,13 @@
 ---
-title: "澳大利亚游记2025.12"                         
-author: "KAI"  
-# description : ""    
-date: 2026-01-06 
-lastmod: 2026-02-09          
-
-tags : [                                    
-"探索世界",
-]
-categories : [                              
-"旅行",
-]
-keywords : [
-"澳大利亚", 
-"跨年",
-“出国”
-]
+title: "澳大利亚游记2025.12"
+date: 2026-01-06
+tags:
+  - 旅行
+categories:
+  - 生活
+keywords:
+  - 澳大利亚
+  - 跨年
 ---
 
 

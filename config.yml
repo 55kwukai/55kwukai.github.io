@@ -8,6 +8,14 @@ enableRobotsTXT: true  # 允许爬虫抓取到搜索引擎，建议 true
 
 hasCJKLanguage: true # 自动检测是否包含 中文日文韩文 如果文章中使用了很多中文引号的话可以开启
 
+enableGitInfo: true # 用 Git 提交时间作为文章 lastmod
+frontmatter:
+  date:
+    - date # 发布日期只认 frontmatter，不随后续提交变化
+  lastmod:
+    - :git # 最近一次改动该文件的提交时间
+    - date
+
 buildDrafts: false
 buildFuture: false
 buildExpired: false
@@ -31,7 +39,7 @@ params:
   title: ExampleSite
   description: "ExampleSite description"
   keywords: [Blog, Portfolio, PaperMod]
-  author: Kai
+  author: KAI
   # author: ["Me", "You"] # multiple authors
   images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"

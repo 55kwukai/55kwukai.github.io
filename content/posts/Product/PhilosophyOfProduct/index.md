@@ -1,19 +1,12 @@
 ---
-title: "产品“哲学”"                         
-author: "KAI"  
-# description : ""    
+title: "产品“哲学”"
 date: 2025-05-03
-lastmod: 2025-10-27          
-
-tags : [                                    
-"",
-]
-categories : [                              
-"产品",
-]
-keywords : [
-"好产品",
-]
+tags:
+  - 随笔
+categories:
+  - 产品
+keywords:
+  - 产品思考
 ---
 
 

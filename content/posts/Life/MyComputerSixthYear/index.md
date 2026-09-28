@@ -1,19 +1,12 @@
 ---
-title: "我和“我的电脑💻”的六年"                         
-author: "KAI"  
-# description : ""    
-date: 2023-05-31 
-lastmod: 2024-06-01          
-
-tags : [                                    
-"兴趣",
-]
-categories : [                              
-"",
-]
-keywords : [
-"电脑",
-]
+title: "我和“我的电脑💻”的六年"
+date: 2023-05-31
+tags:
+  - 随笔
+categories:
+  - 生活
+keywords:
+  - 电脑
 ---
 
 ## 《3202年一台电脑可以用几年》

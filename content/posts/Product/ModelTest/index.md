@@ -1,36 +1,14 @@
-\---
-
+---
 title: "3D模型质量检测"
-
-author: "KAI"
-
 date: 2025-11-25
-
-lastmod: 2026-09-27
-
-tags: [
-
-  "Verify",
-
-  "3D"
-
-]
-
-categories: [
-
-  "产品"
-
-]
-
-keywords: [
-
-  "Web IDE",
-
-  "DSL 设计"
-
-]
-
-\---
+tags:
+  - 设计
+  - 工具
+categories:
+  - 产品
+keywords:
+  - 模型检测
+---
 
 # 3D模型质量检测
 

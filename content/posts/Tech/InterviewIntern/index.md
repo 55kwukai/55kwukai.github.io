@@ -1,20 +1,14 @@
 ---
-title: "SDE面试经验分享"                         
-author: "KAI"  
-# description : ""    
-date: 2023-06-10 
-lastmod: 2024-05-17          
-
-tags : [                                    
-"技术",
-]
-categories : [                              
-"面试",
-]
-keywords : [                                
-"阿里",
-"AutoDesk",
-]
+title: "SDE面试经验分享"
+date: 2023-06-10
+tags:
+  - 职业
+categories:
+  - 技术
+keywords:
+  - 面试
+  - 阿里
+  - AutoDesk
 ---
 
 ## 阿里（淘菜菜）

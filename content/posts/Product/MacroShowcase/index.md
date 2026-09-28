@@ -1,22 +1,14 @@
 ---
 title: "建模编辑器的宏功能：让重复的公式不再痛苦"
-author: "KAI"
 date: 2025-09-25
-lastmod: 2026-02-25
-
-tags: [
-  "产品设计",
-  "建模工具"
-]
-
-categories: [
-  "产品"
-]
-
-keywords: [
-  "宏定义",
-  "公式复用"
-]
+tags:
+  - 设计
+  - 工具
+categories:
+  - 产品
+keywords:
+  - 宏
+  - 公式
 ---
 
 

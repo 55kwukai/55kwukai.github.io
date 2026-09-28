@@ -62,5 +62,7 @@ hugo new posts/Product/my-post.md  # Create new post in Product category
 - `baseURL` is set to GitHub Pages URL
 - `hasCJKLanguage: true` for proper Chinese text handling
 - `buildDrafts: false` - drafts excluded from production builds
+- `author`, table of contents, comments, and share buttons use the defaults in `config.yml`. Do not repeat them in post frontmatter
+- Post `date` is the publication date and stays in frontmatter. `lastmod` comes from Git via `enableGitInfo`. Do not set `lastmod` in posts. The deploy checkout uses `fetch-depth: 0` so that history is available at build time
 - Syntax highlighting uses Darcula style with line numbers enabled
 - Search functionality powered by Fuse.js (configured in fuseOpts) 

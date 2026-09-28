@@ -1,20 +1,12 @@
 ---
-title: "LLM后训练基础"                         
-author: "KAI"  
-description : ""    
-
-date: 2026-02-18 
-lastmod: 2026-02-26          
-
-tags : [                                    
-"技术"
-]
-categories : [                              
-"LLM"
-]
-keywords : [                                
-"Post-Training"
-]
+title: "LLM后训练基础"
+date: 2026-02-18
+tags:
+  - 人工智能
+categories:
+  - 技术
+keywords:
+  - 后训练
 ---
 
 # Post-Training lesson from DeepLearning.AI
