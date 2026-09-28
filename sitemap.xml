@@ -3,10 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://55kwukai.github.io/categories/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/categories/llm/</loc>
     <lastmod>2026-02-26T00:00:00+00:00</lastmod>
@@ -15,7 +15,7 @@
     <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/tags/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/tags/%E6%8A%80%E6%9C%AF/</loc>
     <lastmod>2026-02-26T00:00:00+00:00</lastmod>
@@ -24,7 +24,7 @@
     <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/posts/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/tags/%E6%8E%A2%E7%B4%A2%E4%B8%96%E7%95%8C/</loc>
     <lastmod>2026-02-09T00:00:00+00:00</lastmod>
@@ -45,25 +45,19 @@
     <lastmod>2025-12-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/categories/%E4%BA%A7%E5%93%81/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/posts/product/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/tags/%E4%BA%A7%E5%93%81%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/tags/%E5%BB%BA%E6%A8%A1%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2026-02-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/posts/product/macroshowcase/</loc>
     <lastmod>2026-02-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://55kwukai.github.io/posts/product/modeltest/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://55kwukai.github.io/tags/%E6%A8%A1%E5%9E%8B%E8%B4%A8%E9%87%8F%E4%BF%9D%E9%9A%9C/</loc>
-    <lastmod>2026-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/posts/product/philosophyofproduct/</loc>
     <lastmod>2025-10-27T00:00:00+00:00</lastmod>
@@ -87,5 +81,7 @@
     <lastmod>2024-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://55kwukai.github.io/about/</loc>
+  </url><url>
+    <loc>https://55kwukai.github.io/posts/product/modeltest/</loc>
   </url>
 </urlset>
