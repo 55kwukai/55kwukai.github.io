@@ -76,7 +76,7 @@ params:
 
   label:
     text: "Kai Wu"
-    icon: img/kdd2.png
+    icon: img/wukai.jpg
     iconHeight: 35
 
   # profile-mode
@@ -84,9 +84,9 @@ params:
     enabled: true # needs to be explicitly set
     title: Kai Wu
     subtitle: "Have A Fun, Guys." 
-    imageUrl: "img/kdd2.png"
-    imageWidth: 220
-    imageHeight: 220
+    imageUrl: "img/wukai.jpg"
+    imageWidth: 168
+    imageHeight: 168
     imageTitle: Kai
     buttons:
       - name: 👋About
