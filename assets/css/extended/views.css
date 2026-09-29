@@ -1,0 +1,18 @@
+.page-views-num {
+    display: inline-block;
+    min-width: 1em;
+    text-align: center;
+}
+
+.site-views {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    z-index: 1;
+    color: var(--secondary);
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+    pointer-events: none;
+}
