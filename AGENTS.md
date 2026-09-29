@@ -26,12 +26,13 @@ hugo --cleanDestinationDir  # Build and remove stale files from public/ director
 hugo new posts/Tech/my-post.md     # Create new post in Tech category
 hugo new posts/Life/my-post.md     # Create new post in Life category
 hugo new posts/Product/my-post.md  # Create new post in Product category
+hugo new posts/Investment/my-post.md # Create new post in Investment category
 ```
 
 ## Architecture
 
 **Content Organization:**
-- Posts are organized in `content/posts/` with three main categories: `Tech/`, `Life/`, and `Product/`
+- Posts are organized in `content/posts/` with four main categories: `Tech/`, `Life/`, `Product/`, and `Investment/`
 - Each post is a markdown file with YAML frontmatter
 - The site uses profile mode (enabled in config.yml) showing author info on homepage
 
