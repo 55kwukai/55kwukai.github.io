@@ -32,22 +32,89 @@
         }
     }
 
+    var cancelPageScroll = function () {};
+
+    function scrollPageTo(top) {
+        cancelPageScroll();
+        var max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        top = Math.max(0, Math.min(max, top));
+        var distance = top - window.scrollY;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion || Math.abs(distance) < 48) {
+            window.scrollTo(0, top);
+            document.dispatchEvent(new CustomEvent("pagescrollend", { detail: { completed: true } }));
+            return;
+        }
+        var frame = 0;
+        var frames = 0;
+        var running = true;
+        var wheelOpts = { passive: true };
+        document.documentElement.classList.add("is-page-scrolling");
+
+        function finish(completed) {
+            if (!running) return;
+            running = false;
+            cancelAnimationFrame(frame);
+            window.removeEventListener("wheel", stop, wheelOpts);
+            window.removeEventListener("touchmove", stop, wheelOpts);
+            window.removeEventListener("keydown", onKey);
+            document.documentElement.classList.remove("is-page-scrolling");
+            if (cancelPageScroll === stop) cancelPageScroll = function () {};
+            document.dispatchEvent(new CustomEvent("pagescrollend", { detail: { completed: completed } }));
+        }
+
+        function stop() {
+            finish(false);
+        }
+
+        function onKey(event) {
+            if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].indexOf(event.key) !== -1) {
+                stop();
+            }
+        }
+
+        window.addEventListener("wheel", stop, wheelOpts);
+        window.addEventListener("touchmove", stop, wheelOpts);
+        window.addEventListener("keydown", onKey);
+        cancelPageScroll = stop;
+
+        function step() {
+            if (!running) return;
+            frames++;
+            var current = window.scrollY;
+            var remaining = top - current;
+            if (Math.abs(remaining) < 2 || frames > 48) {
+                window.scrollTo(0, top);
+                finish(true);
+                return;
+            }
+            var maxStep = Math.max(220, Math.round(window.innerHeight * 0.32));
+            var delta = remaining * 0.25;
+            if (Math.abs(delta) > maxStep) delta = Math.sign(remaining) * maxStep;
+            if (Math.abs(delta) < 10) delta = Math.sign(remaining) * Math.min(Math.abs(remaining), 10);
+            window.scrollTo(0, Math.round(current + delta));
+            frame = requestAnimationFrame(step);
+        }
+
+        frame = requestAnimationFrame(step);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
             var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
             if (id === "top") {
+                scrollPageTo(0);
                 history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
+                return;
             }
+            var target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!target) return;
+            var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 24;
+            if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+            target.focus({ preventScroll: true });
+            scrollPageTo(window.scrollY + target.getBoundingClientRect().top - margin);
+            history.replaceState(null, null, "#" + id);
         });
     });
 
