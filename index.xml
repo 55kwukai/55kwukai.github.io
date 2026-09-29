@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI超级周期的经济学</title>
+      <link>https://55kwukai.github.io/posts/investment/economics-of-the-ai-supercycle/</link>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/investment/economics-of-the-ai-supercycle/</guid>
+      <description>Stanford MS&amp;amp;E 435-Economics of the AI Supercycle AI行业里钱怎么流动？ AI和互联网、云计算之间的最大差别是，软件的运行成本几乎可以忽略（毛利率大于80%的软件公司比比皆是），</description>
+    </item>
+    
     <item>
       <title>LLM后训练基础</title>
       <link>https://55kwukai.github.io/posts/tech/post-traininglesson/</link>
