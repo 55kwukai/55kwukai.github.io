@@ -37,7 +37,7 @@ keywords:
 
 🔗 **原型地址**: https://model-test-prototype.vercel.app/
 
-![](./images/main-interface.png)
+![](images/main-interface.png)
 
 功能分为四个部分：
 
@@ -57,13 +57,13 @@ keywords:
 - **模型结构**：结构导航栏的部件、自定义结构、装配结构
 - **商品资源**：被引用的材质、样式、轮廓等
 
-![](./images/frame.png)
+![](images/frame.png)
 
 每种对象可以向内拓展到更深维度。比如变量可以通过来源、引用名、值类型、当前值等字段来描述特征。
 
 举个例子，要检测的特征是：“真分类为掩门，且 D < 20，且 CZ 变量默认值对应的材质商品已被删除”。通过这个框架就能精确描述并检测。
 
-![](./images/case1.png)
+![](images/case1.png)
 
 ### 规则脚本
 
@@ -91,4 +91,4 @@ keywords:
 
 \- 文档支持：数据结构（model/parameter/subModel 等）API 文档
 
-![](./images/custom-feature.png)
+![](images/custom-feature.png)

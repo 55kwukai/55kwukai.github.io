@@ -33,8 +33,13 @@ hugo new posts/Investment/my-post.md # Create new post in Investment category
 
 **Content Organization:**
 - Posts are organized in `content/posts/` with four main categories: `Tech/`, `Life/`, `Product/`, and `Investment/`
-- Each post is a markdown file with YAML frontmatter
+- Each post is a directory: `content/posts/<Category>/<PostName>/index.md`, with YAML frontmatter
 - The site uses profile mode (enabled in config.yml) showing author info on homepage
+
+**Post images:**
+- A post's images live only in `content/posts/<Category>/<PostName>/images/`
+- Reference them from `index.md` as `images/<filename>`, for example `![说明](images/main-interface.png)`
+- Do not leave images beside `index.md`, and do not use Typora `*.assets` folders. Move those pictures into `images/` and rewrite the links before publishing
 
 **Theme Customization:**
 - Base theme: PaperMod located in `themes/PaperMod/`

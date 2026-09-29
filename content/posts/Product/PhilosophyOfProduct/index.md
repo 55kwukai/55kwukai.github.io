@@ -70,7 +70,7 @@ Q：Waterfall的问题是什么？
 
 A：瀑布流通常指的是各自开发很久、联调很久的情况
 
-![image-20250616101417924](workflow.png)
+![image-20250616101417924](images/workflow.png)
 
 
 
@@ -155,7 +155,7 @@ Q：现有的AI编程产品为什么都是以 cli 的形态，例如 claude code
 
 ## Vercel CEO Talk
 
-![image-20251105102757812](image-20251105102757812.png)
+![image-20251105102757812](images/image-20251105102757812.png)
 
 
 

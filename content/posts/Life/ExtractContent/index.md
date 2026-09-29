@@ -50,7 +50,7 @@ Cursor的经验提供了宝贵的启示：专注于解决真正的用户痛点�
 
 基于[MD2Card](https://md2card.com/en)生成，摘选自《岩中花述》S6E9，鲁豫对话陈果。
 
-![岩中花述](yanzhonghuashu.png)
+![岩中花述](images/yanzhonghuashu.png)
 
 
 
