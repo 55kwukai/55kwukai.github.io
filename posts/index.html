@@ -13,7 +13,7 @@
 <meta name="google-site-verification" content="XYZabc">
 <meta name="yandex-verification" content="XYZabc">
 <meta name="msvalidate.01" content="XYZabc">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5c7d2a012352f01b58f4b22378b5f6f04087534aa1d49f8c51a39d1fd4f067d7.css" integrity="sha256-XH0qASNS8BtY9LIjeLX28ECHU0qh1J&#43;MUaOdH9TwZ9c=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ecfbeaa2745bbaae21e9827960411881eba5ab05edd5fdae1c76e4a37b13e242.css" integrity="sha256-7PvqonRbuq4h6YJ5YEEYgeulqwXt1f2uHHbko3sT4kI=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://55kwukai.github.io/img/favicon.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://55kwukai.github.io/img/favicon-16x16.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="https://55kwukai.github.io/img/favicon-32x32.ico">
@@ -222,7 +222,8 @@ if (!doNotTrack) {
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
         <path d="M12 6H0l6-6z" />
     </svg>
-</a>
+</a><script src="/js/page-views.js"></script>
+<script defer src="https://events.vercount.one/js"></script>
 
 <script>
     let menu = document.getElementById('menu')
@@ -233,22 +234,89 @@ if (!doNotTrack) {
         }
     }
 
+    var cancelPageScroll = function () {};
+
+    function scrollPageTo(top) {
+        cancelPageScroll();
+        var max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        top = Math.max(0, Math.min(max, top));
+        var distance = top - window.scrollY;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion || Math.abs(distance) < 48) {
+            window.scrollTo(0, top);
+            document.dispatchEvent(new CustomEvent("pagescrollend", { detail: { completed: true } }));
+            return;
+        }
+        var frame = 0;
+        var frames = 0;
+        var running = true;
+        var wheelOpts = { passive: true };
+        document.documentElement.classList.add("is-page-scrolling");
+
+        function finish(completed) {
+            if (!running) return;
+            running = false;
+            cancelAnimationFrame(frame);
+            window.removeEventListener("wheel", stop, wheelOpts);
+            window.removeEventListener("touchmove", stop, wheelOpts);
+            window.removeEventListener("keydown", onKey);
+            document.documentElement.classList.remove("is-page-scrolling");
+            if (cancelPageScroll === stop) cancelPageScroll = function () {};
+            document.dispatchEvent(new CustomEvent("pagescrollend", { detail: { completed: completed } }));
+        }
+
+        function stop() {
+            finish(false);
+        }
+
+        function onKey(event) {
+            if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].indexOf(event.key) !== -1) {
+                stop();
+            }
+        }
+
+        window.addEventListener("wheel", stop, wheelOpts);
+        window.addEventListener("touchmove", stop, wheelOpts);
+        window.addEventListener("keydown", onKey);
+        cancelPageScroll = stop;
+
+        function step() {
+            if (!running) return;
+            frames++;
+            var current = window.scrollY;
+            var remaining = top - current;
+            if (Math.abs(remaining) < 2 || frames > 48) {
+                window.scrollTo(0, top);
+                finish(true);
+                return;
+            }
+            var maxStep = Math.max(220, Math.round(window.innerHeight * 0.32));
+            var delta = remaining * 0.25;
+            if (Math.abs(delta) > maxStep) delta = Math.sign(remaining) * maxStep;
+            if (Math.abs(delta) < 10) delta = Math.sign(remaining) * Math.min(Math.abs(remaining), 10);
+            window.scrollTo(0, Math.round(current + delta));
+            frame = requestAnimationFrame(step);
+        }
+
+        frame = requestAnimationFrame(step);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
             e.preventDefault();
             var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
             if (id === "top") {
+                scrollPageTo(0);
                 history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
+                return;
             }
+            var target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!target) return;
+            var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 24;
+            if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+            target.focus({ preventScroll: true });
+            scrollPageTo(window.scrollY + target.getBoundingClientRect().top - margin);
+            history.replaceState(null, null, "#" + id);
         });
     });
 
