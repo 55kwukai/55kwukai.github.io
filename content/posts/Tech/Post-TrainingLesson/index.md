@@ -1,6 +1,7 @@
 ---
 title: "LLM后训练基础"
 date: 2026-02-18
+description: "DeepLearning.AI 后训练课程笔记：SFT、DPO 与在线强化学习（PPO、GRPO）的原理、适用场景和数据构造方法，以及三者的优缺点对比。"
 tags:
   - 人工智能
 categories:
@@ -30,7 +31,7 @@ Post-training：让模型学会 chat，或完成指定任务，输出Chat/Instrc
 
 ## Do you really need post-training
 
-![](images/cases-methods.jpeg)
+![后训练的适用场景与方法](images/cases-methods.jpeg)
 
 
 
@@ -102,7 +103,7 @@ DPO 旨在惩罚 negative response，鼓励positive response
 
 DPO-Loss Function
 
-![](images/DPO-loss-function.jpeg)
+![DPO 损失函数](images/DPO-loss-function.jpeg)
 
 
 
@@ -151,7 +152,7 @@ The model learns purely from a pre-collected prompt-response(-reward) tuple
 
 ### Online RL: Let Model Explore Better Responses by Itself
 
-![](images/Online-RL.jpeg)
+![在线强化学习流程](images/Online-RL.jpeg)
 
 Update步骤有多种算法，常见的包括PPO(Proximal Policy Optimization), GRPO(Grouped Relative Policy Optimization)
 
@@ -161,7 +162,7 @@ Update步骤有多种算法，常见的包括PPO(Proximal Policy Optimization), 
 
 #### Option 1: Trained Reward Function
 
-![](images/Trained-Reward-Model.jpeg)
+![训练得到的奖励模型](images/Trained-Reward-Model.jpeg)
 
 - Usually initialized from an existing instruct model, then trained on large-scale human / machine generated preference data
 - Works for any open-ended generations
@@ -172,7 +173,7 @@ Update步骤有多种算法，常见的包括PPO(Proximal Policy Optimization), 
 
 #### Option2: Verifiable Reward
 
-![](images/Verifiable-Reward.jpeg)
+![可验证奖励](images/Verifiable-Reward.jpeg)
 
 适用场景和特点，见图中右侧部分
 
@@ -184,7 +185,7 @@ Both PPO and GRPO are very efficient online RL algorithms!
 
 第一版 ChatGPT 使用的是 PPO；GRPO 由 deepseek 首创，用在后续的 deepseek 模型中。
 
-![](images/PPO&GRPO.jpeg)
+![PPO 与 GRPO 对比](images/PPO&GRPO.jpeg)
 
 #### GRPO(Only assigning credits to full responses instead of individual token)
 

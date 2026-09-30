@@ -1,6 +1,7 @@
 ---
 title: "SDE面试经验分享"
 date: 2023-06-10
+description: "阿里淘菜菜 Java 研发和 Autodesk 软件开发实习面试经验分享，包括面试流程、八股文题目、项目提问和反问环节。"
 tags:
   - 职业
 categories:

@@ -1,6 +1,7 @@
 ---
 title: "摘抄"
 date: 2025-04-01
+description: "日常阅读摘抄，记录关于做事、创业、AI 产品（如 Cursor 的成功经验）的文章片段和个人感想。"
 tags:
   - 随笔
 categories:

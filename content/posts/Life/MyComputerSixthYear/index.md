@@ -1,6 +1,7 @@
 ---
 title: "我和“我的电脑💻”的六年"
 date: 2023-05-31
+description: "一台用了六年的 Dell 笔记本：加内存、换 NVMe 固态、配机械键盘和鼠标，总花费 952 元让老电脑继续好用。"
 tags:
   - 随笔
 categories:

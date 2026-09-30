@@ -1,6 +1,7 @@
 ---
 title: "影视"
 date: 2025-12-01
+description: "追剧笔记，收录《权力的游戏》《越狱》等美剧里喜欢的片段和台词。"
 tags:
   - 随笔
 categories:

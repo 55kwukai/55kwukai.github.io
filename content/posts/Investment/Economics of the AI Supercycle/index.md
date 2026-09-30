@@ -1,6 +1,7 @@
 ---
 title: "AI超级周期的经济学"
 date: 2026-09-29
+description: "Stanford MS&E 435《Economics of the AI Supercycle》课程笔记：AI 产业链的利润分布、GPU 经济、数据中心的能源与建设成本。"
 tags:
   - 人工智能
   - 经济

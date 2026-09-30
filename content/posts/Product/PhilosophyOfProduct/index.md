@@ -1,6 +1,7 @@
 ---
 title: "产品“哲学”"
 date: 2025-05-03
+description: "收录听过的分享和访谈中的产品思考，涵盖 PLG 增长、SEO、AI 产品创新、Agent 与强化学习等话题。"
 tags:
   - 随笔
 categories:

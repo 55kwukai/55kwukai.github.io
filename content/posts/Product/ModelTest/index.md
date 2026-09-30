@@ -1,6 +1,7 @@
 ---
 title: "3D模型质量检测"
 date: 2025-11-25
+description: "参数化 3D 模型自动化质量检测的产品方案：用变量、属性、模型结构和商品资源描述模型特征，配合自研 DSL 规则脚本批量检测，附在线原型。"
 tags:
   - 设计
   - 工具
@@ -37,7 +38,7 @@ keywords:
 
 🔗 **原型地址**: https://model-test-prototype.vercel.app/
 
-![](images/main-interface.png)
+![模型检测原型主界面](images/main-interface.png)
 
 功能分为四个部分：
 
@@ -57,13 +58,13 @@ keywords:
 - **模型结构**：结构导航栏的部件、自定义结构、装配结构
 - **商品资源**：被引用的材质、样式、轮廓等
 
-![](images/frame.png)
+![模型特征检测框架](images/frame.png)
 
 每种对象可以向内拓展到更深维度。比如变量可以通过来源、引用名、值类型、当前值等字段来描述特征。
 
 举个例子，要检测的特征是：“真分类为掩门，且 D < 20，且 CZ 变量默认值对应的材质商品已被删除”。通过这个框架就能精确描述并检测。
 
-![](images/case1.png)
+![特征检测示例](images/case1.png)
 
 ### 规则脚本
 
@@ -91,4 +92,4 @@ keywords:
 
 \- 文档支持：数据结构（model/parameter/subModel 等）API 文档
 
-![](images/custom-feature.png)
+![自定义特征规则脚本编辑器](images/custom-feature.png)
