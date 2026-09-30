@@ -1,5 +1,6 @@
 baseURL: "https://55kwukai.github.io/"    # 绑定的域名
-title: Kai Wu'Blog
+title: 吴凯 Kai Wu 的博客
+languageCode: zh-CN
 theme: PaperMod
 
 enableInlineShortcodes: true #允许内联短码
@@ -20,7 +21,6 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45 #谷歌统计
 paginate: 10   # 每页显示的文章数
 
 minify:
@@ -36,12 +36,20 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
-  keywords: [Blog, Portfolio, PaperMod]
-  author: KAI
+  title: 吴凯 Kai Wu 的博客
+  description: "吴凯（Kai Wu）的个人博客。AI 产品经理，记录 AI 技术、产品思考、投资与生活。"
+  keywords: [吴凯, Kai Wu, 吴凯的博客, 个人博客, 产品经理, LLM, 产品, 投资, 游记]
+  author: 吴凯
   # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  images: ["img/wukai.jpg"]
+  schema:
+    publisherType: Person
+    name: 吴凯
+    alternateName: Kai Wu
+    sameAs:
+      - https://github.com/55kwukai
+      - https://www.linkedin.com/in/kai-wu-4b2693249/
+      - https://twitter.com/kdd40277279
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
@@ -87,7 +95,7 @@ params:
     imageUrl: "img/wukai.jpg"
     imageWidth: 168
     imageHeight: 168
-    imageTitle: Kai
+    imageTitle: Kai Wu
     buttons:
       - name: 👋About
         url: about
@@ -113,11 +121,9 @@ params:
 
   analytics:
     google:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: "7avIO93_3hGs4vE162a-_KrxPmygFJycBTJ9ZhPLhaE" # Google Search Console 的 HTML 标签验证码
     bing:
-      SiteVerificationTag: "XYZabc"
-    yandex:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: "" # Bing 可直接从 Search Console 导入，通常不用填
 
   cover:
     hidden: true # hide everywhere but not in structured data
