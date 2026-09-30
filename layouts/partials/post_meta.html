@@ -20,10 +20,6 @@
 {{- $scratch.Add "meta" (slice (i18n "words" $page.WordCount | default (printf "%d words" $page.WordCount))) }}
 {{- end }}
 
-{{- with (partial "author.html" $page) }}
-{{- $scratch.Add "meta" (slice .) }}
-{{- end }}
-
 {{- with ($scratch.Get "meta") }}
 {{- delimit . "&nbsp;·&nbsp;" -}}
 {{- end -}}
