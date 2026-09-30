@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>技术 on Kai Wu&#39;Blog</title>
+    <title>技术 on 吴凯 Kai Wu 的博客</title>
     <link>https://55kwukai.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
-    <description>Recent content in 技术 on Kai Wu&#39;Blog</description>
+    <description>Recent content in 技术 on 吴凯 Kai Wu 的博客</description>
     <image>
-      <title>Kai Wu&#39;Blog</title>
-      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <title>吴凯 Kai Wu 的博客</title>
+      <url>https://55kwukai.github.io/img/wukai.jpg</url>
+      <link>https://55kwukai.github.io/img/wukai.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-CN</language>
     <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>LLM后训练基础</title>
@@ -18,7 +18,7 @@
       <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/tech/post-traininglesson/</guid>
-      <description>Post-Training lesson from DeepLearning.AI Intro Pre-training：喂数据，让模型学会 predict next token，输出Base Model Post-training：让模型学会 chat，或完成指</description>
+      <description>DeepLearning.AI 后训练课程笔记：SFT、DPO 与在线强化学习（PPO、GRPO）的原理、适用场景和数据构造方法，以及三者的优缺点对比。</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@
       <pubDate>Sat, 10 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/tech/interviewintern/</guid>
-      <description>阿里（淘菜菜） 时间：2023.04.03 申请职位：Java研发工程师 流程： 自我介绍-&amp;gt;项目提问-&amp;gt;Java基础八股文 面试环节： -</description>
+      <description>阿里淘菜菜 Java 研发和 Autodesk 软件开发实习面试经验分享，包括面试流程、八股文题目、项目提问和反问环节。</description>
     </item>
     
   </channel>

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tags on Kai Wu&#39;Blog</title>
+    <title>Tags on 吴凯 Kai Wu 的博客</title>
     <link>https://55kwukai.github.io/tags/</link>
-    <description>Recent content in Tags on Kai Wu&#39;Blog</description>
+    <description>Recent content in Tags on 吴凯 Kai Wu 的博客</description>
     <image>
-      <title>Kai Wu&#39;Blog</title>
-      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <title>吴凯 Kai Wu 的博客</title>
+      <url>https://55kwukai.github.io/img/wukai.jpg</url>
+      <link>https://55kwukai.github.io/img/wukai.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-CN</language>
     <lastBuildDate>Tue, 29 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>人工智能</title>

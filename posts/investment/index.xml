@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>投资📈 on Kai Wu&#39;Blog</title>
+    <title>投资📈 on 吴凯 Kai Wu 的博客</title>
     <link>https://55kwukai.github.io/posts/investment/</link>
-    <description>Recent content in 投资📈 on Kai Wu&#39;Blog</description>
+    <description>Recent content in 投资📈 on 吴凯 Kai Wu 的博客</description>
     <image>
-      <title>Kai Wu&#39;Blog</title>
-      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <title>吴凯 Kai Wu 的博客</title>
+      <url>https://55kwukai.github.io/img/wukai.jpg</url>
+      <link>https://55kwukai.github.io/img/wukai.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://55kwukai.github.io/posts/investment/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language><atom:link href="https://55kwukai.github.io/posts/investment/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI超级周期的经济学</title>
       <link>https://55kwukai.github.io/posts/investment/economics-of-the-ai-supercycle/</link>
       <pubDate>Tue, 29 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/investment/economics-of-the-ai-supercycle/</guid>
-      <description>Stanford MS&amp;amp;E 435-Economics of the AI Supercycle AI行业里钱怎么流动？ AI和互联网、云计算之间的最大差别是，软件的运行成本几乎可以忽略（毛利率大于80%的软件公司比比皆是），</description>
+      <description>Stanford MS&amp;amp;E 435《Economics of the AI Supercycle》课程笔记：AI 产业链的利润分布、GPU 经济、数据中心的能源与建设成本。</description>
     </item>
     
   </channel>

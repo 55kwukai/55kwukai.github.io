@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>生活🏄 on Kai Wu&#39;Blog</title>
+    <title>生活🏄 on 吴凯 Kai Wu 的博客</title>
     <link>https://55kwukai.github.io/posts/life/</link>
-    <description>Recent content in 生活🏄 on Kai Wu&#39;Blog</description>
+    <description>Recent content in 生活🏄 on 吴凯 Kai Wu 的博客</description>
     <image>
-      <title>Kai Wu&#39;Blog</title>
-      <url>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://55kwukai.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+      <title>吴凯 Kai Wu 的博客</title>
+      <url>https://55kwukai.github.io/img/wukai.jpg</url>
+      <link>https://55kwukai.github.io/img/wukai.jpg</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://55kwukai.github.io/posts/life/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language><atom:link href="https://55kwukai.github.io/posts/life/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>澳大利亚游记2025.12</title>
       <link>https://55kwukai.github.io/posts/life/australiatravel/</link>
       <pubDate>Tue, 06 Jan 2026 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/life/australiatravel/</guid>
-      <description>前言 此刻，写下这篇旅行日记的时候，我已经坐在工位准备 2025 年度的 工作review 了。回国三天，澳洲的记忆和感受正在变得模糊。我突然意识到，如果我</description>
+      <description>2025 年底到 2026 年元旦的澳大利亚跨年游记，记录悉尼的渡轮、海港大桥、悉尼大学与 QVB，以及墨尔本的所见所感。</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/life/filmsandtelevision/</guid>
-      <description>美剧 权力的游戏 Winter is coming! 从2025年 12 月开始看权游，除了精彩的剧情之外，我更佩服里面每个人物的勇气和自信。收录了一些我喜欢的片段和台词。 第一季 小</description>
+      <description>追剧笔记，收录《权力的游戏》《越狱》等美剧里喜欢的片段和台词。</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/life/extractcontent/</guid>
-      <description>2025.4.4 真正做事的人，都是偏积极和正能量的。做事情的人，大部分时候都是失败和挫折。顺风顺水总是少数时候，如果没有积极和正能量的内在品质支撑，根本就</description>
+      <description>日常阅读摘抄，记录关于做事、创业、AI 产品（如 Cursor 的成功经验）的文章片段和个人感想。</description>
     </item>
     
     <item>
@@ -44,7 +44,7 @@
       <pubDate>Wed, 31 May 2023 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/life/mycomputersixthyear/</guid>
-      <description>《3202年一台电脑可以用几年》 我的Windows电脑是在高考那年买的，距离现在已经过去了整整六年。（突然发现又要高考了）惊呼我的电脑竟然陪</description>
+      <description>一台用了六年的 Dell 笔记本：加内存、换 NVMe 固态、配机械键盘和鼠标，总花费 952 元让老电脑继续好用。</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://55kwukai.github.io/posts/life/japantravel/</guid>
-      <description>旅行日记📓 Osaka： 28,May 今天是赶飞机的一天。早起吃上一口Mom亲手制作的饺子🥟，随后开启🔛我的日本之旅。由于这是我第一次出国，还是一个人，所</description>
+      <description>2024 年 5 月一个人的日本毕业旅行日记，大阪周游卡路线、环球影城马里奥与哈利波特园区，以及京都、东京的行程见闻。</description>
     </item>
     
   </channel>
