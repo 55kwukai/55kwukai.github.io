@@ -22,6 +22,12 @@ keywords:
 
 
 
+## 在线体验
+
+🔗 **体验地址**: [https://huggingface.co/spaces/itzkdd/ForgeCAD](https://huggingface.co/spaces/itzkdd/ForgeCAD)
+
+
+
 ## 一、 3D 生成的痛点：为什么我们需要一个 CAD Agent？
 
 目前市面上的 3D AIGC 主要走两条技术路线，但在工程制造、工业设计和家居结构件等场景下，各自都有明显的短板：
