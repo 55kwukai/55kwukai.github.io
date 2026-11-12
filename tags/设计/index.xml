@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/tags/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Nov 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://55kwukai.github.io/tags/%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型</title>
+      <link>https://55kwukai.github.io/posts/product/forgecad/</link>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://55kwukai.github.io/posts/product/forgecad/</guid>
+      <description>支持文本与图片输入的多模态对话式 CAD Agent，通过几何内核代码生成、双层递进式校验与自适应修复闭环，将自然语言或参考图转化为可编辑的标准 STEP 模型。</description>
+    </item>
+    
     <item>
       <title>3D模型质量检测</title>
       <link>https://55kwukai.github.io/posts/product/modeltest/</link>

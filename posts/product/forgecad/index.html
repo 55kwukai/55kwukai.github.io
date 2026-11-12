@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型 | 吴凯 Kai Wu 的博客</title>
+<meta name="keywords" content="ForgeCAD, CAD, 3D生成, Agent">
+<meta name="description" content="支持文本与图片输入的多模态对话式 CAD Agent，通过几何内核代码生成、双层递进式校验与自适应修复闭环，将自然语言或参考图转化为可编辑的标准 STEP 模型。">
+<meta name="author" content="吴凯">
+<link rel="canonical" href="https://55kwukai.github.io/posts/product/forgecad/">
+<meta name="google-site-verification" content="7avIO93_3hGs4vE162a-_KrxPmygFJycBTJ9ZhPLhaE">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ecfbeaa2745bbaae21e9827960411881eba5ab05edd5fdae1c76e4a37b13e242.css" integrity="sha256-7PvqonRbuq4h6YJ5YEEYgeulqwXt1f2uHHbko3sT4kI=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://55kwukai.github.io/img/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://55kwukai.github.io/img/favicon-16x16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://55kwukai.github.io/img/favicon-32x32.ico">
+<link rel="apple-touch-icon" href="https://55kwukai.github.io/img/apple-touch-icon.png">
+<link rel="mask-icon" href="https://55kwukai.github.io/img/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型" />
+<meta property="og:description" content="支持文本与图片输入的多模态对话式 CAD Agent，通过几何内核代码生成、双层递进式校验与自适应修复闭环，将自然语言或参考图转化为可编辑的标准 STEP 模型。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://55kwukai.github.io/posts/product/forgecad/" /><meta property="og:image" content="https://55kwukai.github.io/img/wukai.jpg"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2026-11-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-12T16:22:36+08:00" /><meta property="og:site_name" content="吴凯 Kai Wu 的博客" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://55kwukai.github.io/img/wukai.jpg"/>
+
+<meta name="twitter:title" content="ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型"/>
+<meta name="twitter:description" content="支持文本与图片输入的多模态对话式 CAD Agent，通过几何内核代码生成、双层递进式校验与自适应修复闭环，将自然语言或参考图转化为可编辑的标准 STEP 模型。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "文章",
+      "item": "https://55kwukai.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "产品😯",
+      "item": "https://55kwukai.github.io/posts/product/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型",
+      "item": "https://55kwukai.github.io/posts/product/forgecad/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型",
+  "name": "ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型",
+  "description": "支持文本与图片输入的多模态对话式 CAD Agent，通过几何内核代码生成、双层递进式校验与自适应修复闭环，将自然语言或参考图转化为可编辑的标准 STEP 模型。",
+  "keywords": [
+    "ForgeCAD", "CAD", "3D生成", "Agent"
+  ],
+  "articleBody": "如果你尝试过用 AI 生成 3D 模型，大概率会遇到一个尴尬的现状：好看的模型没法直接投入工程生产，而能用于生产的 CAD 代码，AI 又总是“画不对”。\nForgeCAD 就是为了解决这个割裂而生的产品。它是一个支持“文本 + 图片”输入的多模态对话式 CAD Agent，目标很简单：把自然语言描述或一张参考图，直接转化为尺寸精确、结构合理、可导入主流工业软件二次编辑的标准 STEP 模型。\n一、 3D 生成的痛点：为什么我们需要一个 CAD Agent？ 目前市面上的 3D AIGC 主要走两条技术路线，但在工程制造、工业设计和家居结构件等场景下，各自都有明显的短板：\n视觉 Mesh 生成路线（扩散模型 / 图生 3D API） 这类模型擅长生成游戏资产、手办或雕塑。但它们输出的是三角网格（Mesh），没有参数化特征，拓扑结构往往杂乱无章，更谈不上毫米级的尺寸控制，无法直接用于 3D 打印结构件或机械加工。 参数化代码生成路线（LLM + 几何内核 API） 让大模型调用底层的几何内核 API 编写参数化建模脚本，直接构建标准 B-Rep 实体几何（STEP 格式），天然具备精确尺寸和工程可编辑性。但这条路线有一个致命痛点：“代码能跑通，不代表模型画对了。” 随着基座模型代码能力的提升，AI 写出一段语法正确、不报错的建模代码已经不难；但大模型缺乏真正的三维空间知觉，在进行布尔运算、多部件装配或空间坐标变换时，极易产生**“静默几何错误”（Silent Geometric Errors）**——代码顺利返回 ok=true，导出的模型却是桌面悬空、孔位打偏、部件穿模，甚至长宽高差了一个数量级。\nForgeCAD 要解决的核心问题，就是打通从“代码能跑通”到“几何真正确”的最后一公里。\n二、 ForgeCAD 是如何工作的？ 为了让生成的 CAD 模型真正达到可交付标准，ForgeCAD 没有停留在“Prompt 调优 + 一次性代码执行”，而是构建了一套完整的**“多模态输入 → 参数化构建 → 双层校验 → 自适应修复”**闭环。\n1. 多模态输入与边界克制 用户既可以用一句话描述需求（如“做一个 120x80x5mm、四角带 M5 沉头孔的安装板”），也可以直接上传一张产品草图或实物照片，或者图文混输。\n以图定形，以文定尺：当图文同时存在时，Agent 以图片确立几何拓扑与结构形态，以文字确立精确尺寸；未标注的尺寸则按工程常规比例估算并在回复中明确说明。 诚实拒答：当图片过于模糊、与建模无关，且文字不足以确定具体物体时，Agent 不会强行脑补建模，而是主动提示缺失信息。 2. 基于 build123d 的参数化几何引擎 在具体的几何内核 API 选型上，ForgeCAD 采用 build123d 作为核心建模引擎。相比传统的链式调用接口，build123d 基于 Python 上下文管理器（BuildPart、BuildSketch、BuildLine）的构建语法层次更清晰，局部坐标系与布尔运算表达更直观，显著降低了大模型在复杂结构上的代码出错率。所有生成代码均在独立的子进程沙箱中运行，严格隔离语法、执行与导出各阶段的异常。\n3. 核心壁垒：双层递进式自检闭环（Two-Stage Verification） 代码执行成功并生成候选几何后，并不会立刻交付给用户，而是进入两层严格的质量门禁：\n第一层：三维包围盒硬校验（Hard Check） 在代码生成的同时，后台并发解析用户需求中的目标外廓尺寸。候选模型生成后，系统首先提取其实体包围盒（Bounding Box）进行尺寸比对。如果连整体长宽高都不对，直接拦截打回，无需消耗后续的渲染与视觉模型成本。 第二层：四视图渲染 + VLM 视觉验收（Visual Judge） 通过硬校验后，系统调用 VTK 进行离屏渲染（Off-screen Rendering），将模型从正前、正顶以及两个对角等轴测方向，渲染为一张带有特征边描边与尺寸标注的 1024x1024 四视图拼图。 这里采用了一个关键的**“防幻觉两步审图法”**： 盲测清点（Inventory）：如果不加处理地把原始需求（例如“画一张四条腿的桌子”）和渲染图一起喂给视觉大模型（VLM），模型极易产生“迎合心理”，明明只画出了三条腿也会判定通过。因此，系统第一步隐去用户需求，让 VLM 仅凭图片客观清点画中实际存在的部件名称、数量以及悬空、穿模等异常。 对照验收（Checklist Judge）：第二步再将这份客观清点单、渲染图与验收清单对齐，逐项判定 pass / fail / uncertain。一旦存在关键项（Critical）未通过，具体的视觉观察结论会作为工具反馈回传给 Agent，驱动其修改代码（最多迭代 3 轮）。 4. 最优候选兜底与自动化评测基建 在多轮验证与修复过程中，所有中间产物仅保存在临时空间，不污染正式目录；系统会按“硬校验通过 \u003e 关键缺陷最少 \u003e 次要缺陷最少”的规则实时追踪最优候选解。即使遇到极端复杂的需求在 3 轮内未能完全通过，也会交付历史得分最高的版本并如实告知未通过项。\n此外，项目内置了包含 80 个真实跨领域案例的 CAD Benchmark v1，覆盖机械零件、家具柜体、建筑构件等场景，对工具成功率、STEP 可加载率、包围盒准确率及端到端耗时进行自动化回归评测。\n三、 构建 3D CAD Agent 的几点思考 在将 ForgeCAD 从早期的原型打磨为稳定可用产品的过程中，我们踩过不少坑，也对垂直领域的 Agent 设计形成了一些更为冷静的认知：\n1. 产品定位做减法：不恋战黑盒 API，聚焦真正可控的价值 项目早期曾同时接入过外部商业图生 3D Mesh 的 API。但在实践中很快发现：一方面，第三方黑盒 API 单次调用成本高昂，且生成的是不可编辑的 Mesh，与参数化 CAD 属于完全不同的下游场景；另一方面，单纯做一层 API 转发，核心能力并不在自己手里。\n果断砍掉外围 Mesh 接口、将所有精力收敛到“多模态输入 → 参数化 CAD 代码 → 闭环验证”这条主干道上，不仅降低了系统耦合度，也让产品的护城河真正建立在工程闭环之上。\n2. 认清大模型的空间短板：验收标准必须与呈现媒介对齐 大模型在三维空间几何上的先验知识依然薄弱，复杂装配和曲面过渡很难靠一次生成搞定，“靠验证把关”是现阶段的必然选择。\n但在设计验证环节时，极易犯一个错误：让裁判去检查它根本看不见的东西。例如，验证环节渲染的是纯灰色的 STL 几何白模，本身不包含任何材质、颜色或透明度信息；如果验收清单里生成了“桌面是否为透明玻璃”、“外壳是否为白色”这类检查项，视觉裁判就会永远判错，导致无意义的死循环重试。因此，在工程上强制剥离色彩与材质检查、仅保留几何与拓扑特征（如将“玻璃桌面”转化为“薄平板桌面结构”），是让视觉验证真正可用的关键细节。\n3. Agent 架构的边界：不要把确定性的流程编排交给大模型 在设计“生成验收清单 → 写建模代码 → 渲染校验”的链路时，一个很自然的想法是：为什么不把“生成清单”和“视觉校验”都做成独立的 Tool，放进同一个 Agent Loop 里，让大模型自己决定并行或串行调用？\n这看似很符合“自主 Agent”的教条，但在工程上却是一笔亏本买卖：\n伪并发与耗时叠加：当开启推理模式（Thinking）时，即便让模型在一次回复里输出两个工具调用，它也必须先串行思考完清单和完整 CAD 代码才能返回，根本无法实现“边写代码边准备清单”的真并发。 职责耦合（运动员兼任裁判）：同一个上下文既写代码又列验收标准，模型极易顺着自己代码的偷懒之处去降低验收标准，失去独立第三方审查的意义。 上下文污染：如果把视觉审查暴露在主对话历史中，高达数千 Token 的多视图图片会留在主上下文里，导致后续每一轮代码修复都重复为图片买单。 因此，ForgeCAD 最终选择了**“外层 Agent Loop 负责创造与修复，内层确定性管线（Pipeline）负责并发与验收”**：主模型只管专注写好建模代码；而清单的后台线程并发生成、子进程渲染、VLM 盲测审图，全部由确定性的 Python 工程代码在工具内部悄无声息地完成，最终只把几百字的纯文本审查结论回传给主模型。好的 Agent 架构，不是让模型接管一切，而是让模型只做它最擅长的非确定性推理，用确定性的代码守住质量、速度与成本的底线。\n4. 推理时代的成本与延迟博弈：按需分配算力 推理模型（Thinking Mode）极大提升了复杂 CAD 代码的生成上限，但全量开启高强度思考（High Effort）加上多轮视觉校验，很容易让单次等待时间超过两分钟。为了在体验与质量之间取得平衡，我们在工程细节上做了大量“抠门”的优化：\n自适应推理强度（Adaptive Effort）：首轮生成默认采用 low 推理强度快速出初稿——对于大多数常规需求，这已经足够一次通过；只有当视觉校验返回 failed、需要针对具体缺陷攻坚修改时，系统才自动将下一轮推理强度升档为 high，通过后立即降回 low。 零冗余几何执行：在候选验证阶段一次性导出临时的 STEP 与 STL，一旦校验通过，直接通过文件级移动发布为正式产物，绝不为了保存 STEP 而把耗时数秒的 CAD 代码再跑第二遍。 视觉 Token 压缩：无论是验证环节将四个视角压进单张 1024x1024 网格图并关闭审查模型的 Thinking，还是输入端利用多模态接口的自适应缩放机制，核心原则都只有一条——把每一分 Token 和每一秒延迟，都花在真正影响几何质量的刀刃上。 结语 3D CAD 生成正处于从“玩具演示”走向“工程可用”的拐点。ForgeCAD 的探索证明了：即使基座模型在三维空间直觉上仍有局限，通过恰当的几何内核抽象、对抗幻觉的视觉验证闭环，以及克制务实的 Agent 工程架构，我们依然能够构建出一个稳定、可控、能交付工业级标准件的 CAD 智能体。\n",
+  "wordCount" : "3701",
+  "inLanguage": "zh-CN",
+  "datePublished": "2026-11-12T00:00:00Z",
+  "dateModified": "2026-11-12T16:22:36+08:00",
+  "author":{
+    "@type": "Person",
+    "name": "吴凯"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://55kwukai.github.io/posts/product/forgecad/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "吴凯",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://55kwukai.github.io/img/favicon.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://55kwukai.github.io/" accesskey="h" title="Kai Wu (Alt + H)">
+                <img src="https://55kwukai.github.io/img/wukai.jpg" alt="" aria-label="logo"
+                    height="35">Kai Wu</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://55kwukai.github.io/about/" title="👋About">
+                    <span>👋About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://55kwukai.github.io/posts/" title="📔Posts">
+                    <span>📔Posts</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://55kwukai.github.io/Resume.pdf" title="📄Resume">
+                    <span>📄Resume</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single"><div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一-3d-生成的痛点为什么我们需要一个-cad-agent">一、 3D 生成的痛点：为什么我们需要一个 CAD Agent？</a></li>
+    <li><a href="#二-forgecad-是如何工作的">二、 ForgeCAD 是如何工作的？</a>
+      <ul>
+        <li><a href="#1-多模态输入与边界克制">1. 多模态输入与边界克制</a></li>
+        <li><a href="#2-基于-build123d-的参数化几何引擎">2. 基于 <code>build123d</code> 的参数化几何引擎</a></li>
+        <li><a href="#3-核心壁垒双层递进式自检闭环two-stage-verification">3. 核心壁垒：双层递进式自检闭环（Two-Stage Verification）</a></li>
+        <li><a href="#4-最优候选兜底与自动化评测基建">4. 最优候选兜底与自动化评测基建</a></li>
+      </ul>
+    </li>
+    <li><a href="#三-构建-3d-cad-agent-的几点思考">三、 构建 3D CAD Agent 的几点思考</a>
+      <ul>
+        <li><a href="#1-产品定位做减法不恋战黑盒-api聚焦真正可控的价值">1. 产品定位做减法：不恋战黑盒 API，聚焦真正可控的价值</a></li>
+        <li><a href="#2-认清大模型的空间短板验收标准必须与呈现媒介对齐">2. 认清大模型的空间短板：验收标准必须与呈现媒介对齐</a></li>
+        <li><a href="#3-agent-架构的边界不要把确定性的流程编排交给大模型">3. Agent 架构的边界：不要把确定性的流程编排交给大模型</a></li>
+        <li><a href="#4-推理时代的成本与延迟博弈按需分配算力">4. 推理时代的成本与延迟博弈：按需分配算力</a></li>
+      </ul>
+    </li>
+    <li><a href="#结语">结语</a></li>
+  </ul>
+</nav>
+        </div>
+    </details>
+</div>
+<script>
+    (function () {
+        var toc = document.currentScript && document.currentScript.previousElementSibling;
+        if (!toc || !toc.classList.contains("toc")) return;
+
+        function init() {
+            var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+            var items = links.map(function (link) {
+                var id = decodeURIComponent(link.getAttribute("href").slice(1));
+                var heading = document.getElementById(id);
+                return heading ? { link: link, heading: heading } : null;
+            }).filter(Boolean);
+            if (!items.length) return;
+
+            var pointerInside = false;
+            var currentId = "";
+            toc.addEventListener("pointerenter", function () { pointerInside = true; });
+            toc.addEventListener("pointerleave", function () { pointerInside = false; });
+
+            function reveal(link, smooth) {
+                var tocBox = toc.getBoundingClientRect();
+                var linkBox = link.getBoundingClientRect();
+                if (linkBox.top >= tocBox.top + 8 && linkBox.bottom <= tocBox.bottom - 8) return;
+                var next = toc.scrollTop + (linkBox.top - tocBox.top) - 48;
+                var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                toc.scrollTo({
+                    top: Math.max(0, next),
+                    behavior: smooth && !reduceMotion ? "smooth" : "auto"
+                });
+            }
+
+            function setActive(id) {
+                if (id === currentId) return;
+                currentId = id;
+                items.forEach(function (item) {
+                    var on = item.heading.id === id;
+                    item.link.classList.toggle("is-active", on);
+                    if (on) item.link.setAttribute("aria-current", "location");
+                    else item.link.removeAttribute("aria-current");
+                });
+            }
+
+            function update() {
+                var line = 56;
+                var current = items[0].heading.id;
+                items.forEach(function (item) {
+                    if (item.heading.getBoundingClientRect().top <= line) current = item.heading.id;
+                });
+                setActive(current);
+            }
+
+            toc.addEventListener("click", function (event) {
+                var link = event.target.closest("a[href^='#']");
+                if (!link || !toc.contains(link)) return;
+                var id = decodeURIComponent(link.getAttribute("href").slice(1));
+                if (!document.getElementById(id)) return;
+                setActive(id);
+            });
+
+            var ticking = false;
+            window.addEventListener("scroll", function () {
+                if (document.documentElement.classList.contains("is-page-scrolling")) return;
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(function () {
+                    ticking = false;
+                    if (document.documentElement.classList.contains("is-page-scrolling")) return;
+                    update();
+                    if (pointerInside) return;
+                    var active = toc.querySelector("a.is-active");
+                    if (active) reveal(active, false);
+                });
+            }, { passive: true });
+
+            document.addEventListener("pagescrollend", function (event) {
+                if (!event.detail || !event.detail.completed) return;
+                update();
+                if (pointerInside) return;
+                var active = toc.querySelector("a.is-active");
+                if (active) reveal(active, true);
+            });
+            update();
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+    })();
+</script>
+
+  <div class="post-body">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://55kwukai.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://55kwukai.github.io/posts/">文章</a>&nbsp;»&nbsp;<a href="https://55kwukai.github.io/posts/product/">产品😯</a></div>
+    <h1 class="post-title">
+      ForgeCAD：让 AI 画出真正能用的参数化 CAD 模型
+    </h1>
+    <div class="post-meta"><span title='2026-11-12 00:00:00 +0000 UTC'>November 12, 2026</span>&nbsp;·&nbsp;8 min&nbsp;·&nbsp;3701 words<span class="page-views">&nbsp;·&nbsp;<span class="page-views-num">—</span> 次阅读</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>如果你尝试过用 AI 生成 3D 模型，大概率会遇到一个尴尬的现状：<strong>好看的模型没法直接投入工程生产，而能用于生产的 CAD 代码，AI 又总是“画不对”。</strong></p>
+<p><strong>ForgeCAD</strong> 就是为了解决这个割裂而生的产品。它是一个支持“文本 + 图片”输入的多模态对话式 CAD Agent，目标很简单：<strong>把自然语言描述或一张参考图，直接转化为尺寸精确、结构合理、可导入主流工业软件二次编辑的标准 <code>STEP</code> 模型。</strong></p>
+<h2 id="一-3d-生成的痛点为什么我们需要一个-cad-agent">一、 3D 生成的痛点：为什么我们需要一个 CAD Agent？<a hidden class="anchor" aria-hidden="true" href="#一-3d-生成的痛点为什么我们需要一个-cad-agent">#</a></h2>
+<p>目前市面上的 3D AIGC 主要走两条技术路线，但在工程制造、工业设计和家居结构件等场景下，各自都有明显的短板：</p>
+<ol>
+<li><strong>视觉 Mesh 生成路线（扩散模型 / 图生 3D API）</strong>
+这类模型擅长生成游戏资产、手办或雕塑。但它们输出的是三角网格（Mesh），没有参数化特征，拓扑结构往往杂乱无章，更谈不上毫米级的尺寸控制，无法直接用于 3D 打印结构件或机械加工。</li>
+<li><strong>参数化代码生成路线（LLM + 几何内核 API）</strong>
+让大模型调用底层的几何内核 API 编写参数化建模脚本，直接构建标准 B-Rep 实体几何（<code>STEP</code> 格式），天然具备精确尺寸和工程可编辑性。但这条路线有一个致命痛点：<strong>“代码能跑通，不代表模型画对了。”</strong></li>
+</ol>
+<p>随着基座模型代码能力的提升，AI 写出一段语法正确、不报错的建模代码已经不难；但大模型缺乏真正的三维空间知觉，在进行布尔运算、多部件装配或空间坐标变换时，极易产生**“静默几何错误”（Silent Geometric Errors）**——代码顺利返回 <code>ok=true</code>，导出的模型却是桌面悬空、孔位打偏、部件穿模，甚至长宽高差了一个数量级。</p>
+<p><strong>ForgeCAD 要解决的核心问题，就是打通从“代码能跑通”到“几何真正确”的最后一公里。</strong></p>
+<h2 id="二-forgecad-是如何工作的">二、 ForgeCAD 是如何工作的？<a hidden class="anchor" aria-hidden="true" href="#二-forgecad-是如何工作的">#</a></h2>
+<p>为了让生成的 CAD 模型真正达到可交付标准，ForgeCAD 没有停留在“Prompt 调优 + 一次性代码执行”，而是构建了一套完整的**“多模态输入 → 参数化构建 → 双层校验 → 自适应修复”**闭环。</p>
+<p><img loading="lazy" src="images/workflow.jpg" alt="ForgeCAD 架构与工作流"  />
+</p>
+<h3 id="1-多模态输入与边界克制">1. 多模态输入与边界克制<a hidden class="anchor" aria-hidden="true" href="#1-多模态输入与边界克制">#</a></h3>
+<p>用户既可以用一句话描述需求（如“做一个 <code>120x80x5mm</code>、四角带 <code>M5</code> 沉头孔的安装板”），也可以直接上传一张产品草图或实物照片，或者图文混输。</p>
+<ul>
+<li><strong>以图定形，以文定尺</strong>：当图文同时存在时，Agent 以图片确立几何拓扑与结构形态，以文字确立精确尺寸；未标注的尺寸则按工程常规比例估算并在回复中明确说明。</li>
+<li><strong>诚实拒答</strong>：当图片过于模糊、与建模无关，且文字不足以确定具体物体时，Agent 不会强行脑补建模，而是主动提示缺失信息。</li>
+</ul>
+<h3 id="2-基于-build123d-的参数化几何引擎">2. 基于 <code>build123d</code> 的参数化几何引擎<a hidden class="anchor" aria-hidden="true" href="#2-基于-build123d-的参数化几何引擎">#</a></h3>
+<p>在具体的几何内核 API 选型上，ForgeCAD 采用 <code>build123d</code> 作为核心建模引擎。相比传统的链式调用接口，<code>build123d</code> 基于 Python 上下文管理器（<code>BuildPart</code>、<code>BuildSketch</code>、<code>BuildLine</code>）的构建语法层次更清晰，局部坐标系与布尔运算表达更直观，显著降低了大模型在复杂结构上的代码出错率。所有生成代码均在独立的子进程沙箱中运行，严格隔离语法、执行与导出各阶段的异常。</p>
+<h3 id="3-核心壁垒双层递进式自检闭环two-stage-verification">3. 核心壁垒：双层递进式自检闭环（Two-Stage Verification）<a hidden class="anchor" aria-hidden="true" href="#3-核心壁垒双层递进式自检闭环two-stage-verification">#</a></h3>
+<p>代码执行成功并生成候选几何后，并不会立刻交付给用户，而是进入两层严格的质量门禁：</p>
+<ul>
+<li><strong>第一层：三维包围盒硬校验（Hard Check）</strong>
+在代码生成的同时，后台并发解析用户需求中的目标外廓尺寸。候选模型生成后，系统首先提取其实体包围盒（Bounding Box）进行尺寸比对。如果连整体长宽高都不对，直接拦截打回，无需消耗后续的渲染与视觉模型成本。</li>
+<li><strong>第二层：四视图渲染 + VLM 视觉验收（Visual Judge）</strong>
+通过硬校验后，系统调用 VTK 进行离屏渲染（Off-screen Rendering），将模型从正前、正顶以及两个对角等轴测方向，渲染为一张带有特征边描边与尺寸标注的 <code>1024x1024</code> 四视图拼图。
+这里采用了一个关键的**“防幻觉两步审图法”**：
+<ol>
+<li><strong>盲测清点（Inventory）</strong>：如果不加处理地把原始需求（例如“画一张四条腿的桌子”）和渲染图一起喂给视觉大模型（VLM），模型极易产生“迎合心理”，明明只画出了三条腿也会判定通过。因此，系统第一步<strong>隐去用户需求</strong>，让 VLM 仅凭图片客观清点画中实际存在的部件名称、数量以及悬空、穿模等异常。</li>
+<li><strong>对照验收（Checklist Judge）</strong>：第二步再将这份客观清点单、渲染图与验收清单对齐，逐项判定 <code>pass / fail / uncertain</code>。一旦存在关键项（Critical）未通过，具体的视觉观察结论会作为工具反馈回传给 Agent，驱动其修改代码（最多迭代 3 轮）。</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-最优候选兜底与自动化评测基建">4. 最优候选兜底与自动化评测基建<a hidden class="anchor" aria-hidden="true" href="#4-最优候选兜底与自动化评测基建">#</a></h3>
+<p>在多轮验证与修复过程中，所有中间产物仅保存在临时空间，不污染正式目录；系统会按“硬校验通过 &gt; 关键缺陷最少 &gt; 次要缺陷最少”的规则实时追踪最优候选解。即使遇到极端复杂的需求在 3 轮内未能完全通过，也会交付历史得分最高的版本并如实告知未通过项。</p>
+<p>此外，项目内置了包含 80 个真实跨领域案例的 <strong>CAD Benchmark v1</strong>，覆盖机械零件、家具柜体、建筑构件等场景，对工具成功率、STEP 可加载率、包围盒准确率及端到端耗时进行自动化回归评测。</p>
+<h2 id="三-构建-3d-cad-agent-的几点思考">三、 构建 3D CAD Agent 的几点思考<a hidden class="anchor" aria-hidden="true" href="#三-构建-3d-cad-agent-的几点思考">#</a></h2>
+<p>在将 ForgeCAD 从早期的原型打磨为稳定可用产品的过程中，我们踩过不少坑，也对垂直领域的 Agent 设计形成了一些更为冷静的认知：</p>
+<h3 id="1-产品定位做减法不恋战黑盒-api聚焦真正可控的价值">1. 产品定位做减法：不恋战黑盒 API，聚焦真正可控的价值<a hidden class="anchor" aria-hidden="true" href="#1-产品定位做减法不恋战黑盒-api聚焦真正可控的价值">#</a></h3>
+<p>项目早期曾同时接入过外部商业图生 3D Mesh 的 API。但在实践中很快发现：一方面，第三方黑盒 API 单次调用成本高昂，且生成的是不可编辑的 Mesh，与参数化 CAD 属于完全不同的下游场景；另一方面，单纯做一层 API 转发，核心能力并不在自己手里。</p>
+<p>果断砍掉外围 Mesh 接口、将所有精力收敛到“多模态输入 → 参数化 CAD 代码 → 闭环验证”这条主干道上，不仅降低了系统耦合度，也让产品的护城河真正建立在工程闭环之上。</p>
+<h3 id="2-认清大模型的空间短板验收标准必须与呈现媒介对齐">2. 认清大模型的空间短板：验收标准必须与呈现媒介对齐<a hidden class="anchor" aria-hidden="true" href="#2-认清大模型的空间短板验收标准必须与呈现媒介对齐">#</a></h3>
+<p>大模型在三维空间几何上的先验知识依然薄弱，复杂装配和曲面过渡很难靠一次生成搞定，<strong>“靠验证把关”是现阶段的必然选择</strong>。</p>
+<p>但在设计验证环节时，极易犯一个错误：<strong>让裁判去检查它根本看不见的东西</strong>。例如，验证环节渲染的是纯灰色的 STL 几何白模，本身不包含任何材质、颜色或透明度信息；如果验收清单里生成了“桌面是否为透明玻璃”、“外壳是否为白色”这类检查项，视觉裁判就会永远判错，导致无意义的死循环重试。因此，在工程上强制剥离色彩与材质检查、仅保留几何与拓扑特征（如将“玻璃桌面”转化为“薄平板桌面结构”），是让视觉验证真正可用的关键细节。</p>
+<h3 id="3-agent-架构的边界不要把确定性的流程编排交给大模型">3. Agent 架构的边界：不要把确定性的流程编排交给大模型<a hidden class="anchor" aria-hidden="true" href="#3-agent-架构的边界不要把确定性的流程编排交给大模型">#</a></h3>
+<p>在设计“生成验收清单 → 写建模代码 → 渲染校验”的链路时，一个很自然的想法是：<strong>为什么不把“生成清单”和“视觉校验”都做成独立的 Tool，放进同一个 Agent Loop 里，让大模型自己决定并行或串行调用？</strong></p>
+<p>这看似很符合“自主 Agent”的教条，但在工程上却是一笔亏本买卖：</p>
+<ul>
+<li><strong>伪并发与耗时叠加</strong>：当开启推理模式（Thinking）时，即便让模型在一次回复里输出两个工具调用，它也必须先串行思考完清单和完整 CAD 代码才能返回，根本无法实现“边写代码边准备清单”的真并发。</li>
+<li><strong>职责耦合（运动员兼任裁判）</strong>：同一个上下文既写代码又列验收标准，模型极易顺着自己代码的偷懒之处去降低验收标准，失去独立第三方审查的意义。</li>
+<li><strong>上下文污染</strong>：如果把视觉审查暴露在主对话历史中，高达数千 Token 的多视图图片会留在主上下文里，导致后续每一轮代码修复都重复为图片买单。</li>
+</ul>
+<p>因此，ForgeCAD 最终选择了**“外层 Agent Loop 负责创造与修复，内层确定性管线（Pipeline）负责并发与验收”**：主模型只管专注写好建模代码；而清单的后台线程并发生成、子进程渲染、VLM 盲测审图，全部由确定性的 Python 工程代码在工具内部悄无声息地完成，最终只把几百字的纯文本审查结论回传给主模型。<strong>好的 Agent 架构，不是让模型接管一切，而是让模型只做它最擅长的非确定性推理，用确定性的代码守住质量、速度与成本的底线。</strong></p>
+<h3 id="4-推理时代的成本与延迟博弈按需分配算力">4. 推理时代的成本与延迟博弈：按需分配算力<a hidden class="anchor" aria-hidden="true" href="#4-推理时代的成本与延迟博弈按需分配算力">#</a></h3>
+<p>推理模型（Thinking Mode）极大提升了复杂 CAD 代码的生成上限，但全量开启高强度思考（High Effort）加上多轮视觉校验，很容易让单次等待时间超过两分钟。为了在体验与质量之间取得平衡，我们在工程细节上做了大量“抠门”的优化：</p>
+<ul>
+<li><strong>自适应推理强度（Adaptive Effort）</strong>：首轮生成默认采用 <code>low</code> 推理强度快速出初稿——对于大多数常规需求，这已经足够一次通过；只有当视觉校验返回 <code>failed</code>、需要针对具体缺陷攻坚修改时，系统才自动将下一轮推理强度升档为 <code>high</code>，通过后立即降回 <code>low</code>。</li>
+<li><strong>零冗余几何执行</strong>：在候选验证阶段一次性导出临时的 <code>STEP</code> 与 <code>STL</code>，一旦校验通过，直接通过文件级移动发布为正式产物，绝不为了保存 <code>STEP</code> 而把耗时数秒的 CAD 代码再跑第二遍。</li>
+<li><strong>视觉 Token 压缩</strong>：无论是验证环节将四个视角压进单张 <code>1024x1024</code> 网格图并关闭审查模型的 Thinking，还是输入端利用多模态接口的自适应缩放机制，核心原则都只有一条——<strong>把每一分 Token 和每一秒延迟，都花在真正影响几何质量的刀刃上。</strong></li>
+</ul>
+<h2 id="结语">结语<a hidden class="anchor" aria-hidden="true" href="#结语">#</a></h2>
+<p>3D CAD 生成正处于从“玩具演示”走向“工程可用”的拐点。ForgeCAD 的探索证明了：即使基座模型在三维空间直觉上仍有局限，通过<strong>恰当的几何内核抽象、对抗幻觉的视觉验证闭环，以及克制务实的 Agent 工程架构</strong>，我们依然能够构建出一个稳定、可控、能交付工业级标准件的 CAD 智能体。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://55kwukai.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li>
+      <li><a href="https://55kwukai.github.io/tags/%E8%AE%BE%E8%AE%A1/">设计</a></li>
+      <li><a href="https://55kwukai.github.io/tags/%E5%B7%A5%E5%85%B7/">工具</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://55kwukai.github.io/posts/investment/economics-of-the-ai-supercycle/">
+    <span class="title">Next »</span>
+    <br>
+    <span>AI超级周期的经济学</span>
+  </a>
+</nav>
+
+  </footer>
+  </div>
+</article>
+    </main>
+    
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script src="/js/page-views.js"></script>
+<script defer src="https://events.vercount.one/js"></script>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    var cancelPageScroll = function () {};
+
+    function scrollPageTo(top) {
+        cancelPageScroll();
+        var max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        top = Math.max(0, Math.min(max, top));
+        var distance = top - window.scrollY;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion || Math.abs(distance) < 48) {
+            window.scrollTo(0, top);
+            document.dispatchEvent(new CustomEvent("pagescrollend", { detail: { completed: true } }));
+            return;
+        }
+        var frame = 0;
+        var frames = 0;
+        var running = true;
+        var wheelOpts = { passive: true };
+        document.documentElement.classList.add("is-page-scrolling");
+
+        function finish(completed) {
+            if (!running) return;
+            running = false;
+            cancelAnimationFrame(frame);
+            window.removeEventListener("wheel", stop, wheelOpts);
+            window.removeEventListener("touchmove", stop, wheelOpts);
+            window.removeEventListener("keydown", onKey);
+            document.documentElement.classList.remove("is-page-scrolling");
+            if (cancelPageScroll === stop) cancelPageScroll = function () {};
+            document.dispatchEvent(new CustomEvent("pagescrollend", { detail: { completed: completed } }));
+        }
+
+        function stop() {
+            finish(false);
+        }
+
+        function onKey(event) {
+            if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].indexOf(event.key) !== -1) {
+                stop();
+            }
+        }
+
+        window.addEventListener("wheel", stop, wheelOpts);
+        window.addEventListener("touchmove", stop, wheelOpts);
+        window.addEventListener("keydown", onKey);
+        cancelPageScroll = stop;
+
+        function step() {
+            if (!running) return;
+            frames++;
+            var current = window.scrollY;
+            var remaining = top - current;
+            if (Math.abs(remaining) < 2 || frames > 48) {
+                window.scrollTo(0, top);
+                finish(true);
+                return;
+            }
+            var maxStep = Math.max(220, Math.round(window.innerHeight * 0.32));
+            var delta = remaining * 0.25;
+            if (Math.abs(delta) > maxStep) delta = Math.sign(remaining) * maxStep;
+            if (Math.abs(delta) < 10) delta = Math.sign(remaining) * Math.min(Math.abs(remaining), 10);
+            window.scrollTo(0, Math.round(current + delta));
+            frame = requestAnimationFrame(step);
+        }
+
+        frame = requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (id === "top") {
+                scrollPageTo(0);
+                history.replaceState(null, null, " ");
+                return;
+            }
+            var target = document.querySelector(`[id='${decodeURIComponent(id)}']`);
+            if (!target) return;
+            var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 24;
+            if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+            target.focus({ preventScroll: true });
+            scrollPageTo(window.scrollY + target.getBoundingClientRect().top - margin);
+            history.replaceState(null, null, "#" + id);
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
